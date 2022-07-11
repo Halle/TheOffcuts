@@ -2,7 +2,7 @@
 menu:
   after:
     name: Privacy Policy
-    weight: 6
+    weight: 8
 title: Privacy Policy
 ---
 
