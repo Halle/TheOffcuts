@@ -1,0 +1,10 @@
+{{ $color := .Get "color" }}
+{{ $allHighlightRanges := split (.Get "ranges") ","}}
+<script>hljs.addPlugin(new CopyButtonPlugin());</script>
+<script>hljs.highlightLinesAll([[
+{{ range $allHighlightRanges }}
+{{ $innerarray := split . "-" }} 
+    {start: '{{ index $innerarray 0 }}', end: '{{ index $innerarray 1}}', color: '{{ $color }}'},
+{{end}}
+],]);</script>
+<pre><code class="language-swift">{{ .Inner }}</code></pre>

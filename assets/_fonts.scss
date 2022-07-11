@@ -1,0 +1,228 @@
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''),
+       url('fonts/roboto-v27-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/roboto-v27-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* roboto-700 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local(''),
+       url('fonts/roboto-v27-latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/roboto-v27-latin-700.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* roboto-mono-regular - latin */
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local(''),
+       url('fonts/roboto-mono-v13-latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/roboto-mono-v13-latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+// 
+// @font-face {
+//   font-family: 'AliceRegular';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//        url('fonts/AliceRegular/alice-regular-webfont.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//        url('fonts/AliceRegular/alice-regular-webfont.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+// }
+// 
+// @font-face {
+//   font-family: 'CooperHewitt';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//        url('fonts/CooperHewitt/CooperHewitt-Book.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//        url('fonts/CooperHewitt/CooperHewitt-Book.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+// }
+// 
+@font-face {
+  font-family: 'FiraSans';
+  font-style: normal;
+  font-display: swap;
+  src: local(''),
+       url('fonts/FiraSans/FiraSans-Regular.woff') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+       url('fonts/FiraSans/FiraSans-Regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+// 
+// @font-face {
+//   font-family: 'Hack';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//        url('fonts/Hack/Hack-Regular.woff') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//        url('fonts/Hack/Hack-Regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+// }
+// 
+// @font-face {
+//   font-family: 'Garogier';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//        url('fonts/Garogier/Garogier.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//        url('fonts/Garogier/Garogier.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+// }
+// 
+// @font-face {
+//   font-family: 'Gidole';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//        url('fonts/Gidole/Gidole.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+// }
+// 
+// @font-face {
+//   font-family: 'LeagueSpartan';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//     url('fonts/LeagueSpartan/LeagueSpartan-Bold.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//    url('fonts/LeagueSpartan/LeagueSpartan-Bold.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+// }
+// 
+// @font-face {
+//   font-family: 'Manrope';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/Manrope/Manrope-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+// 
+// @font-face {
+//   font-family: 'Overpass';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/Overpass/Overpass-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/Overpass/Overpass-Regular.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// }
+// 
+// @font-face {
+//   font-family: 'OverpassMono';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/OverpassMono/OverpassMono-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/OverpassMono/OverpassMono-Regular.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+// 
+// @font-face {
+//   font-family: 'PlexMono';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/Plex/IBMPlexMono-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/Plex/IBMPlexMono-Regular.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+// 
+@font-face {
+  font-family: 'PlexMonoText';
+  font-style: normal;
+  font-display: swap;
+  src: local(''),
+         url('fonts/Plex/IBMPlexMono-Text.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+
+}
+// 
+// @font-face {
+//   font-family: 'PlexMonoSemibold';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/Plex/IBMPlexMono-SemiBold.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/Plex/IBMPlexMono-SemiBold.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+// 
+// @font-face {
+//   font-family: 'PlexSansRegular';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/Plex/IBMPlexSans-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/Plex/IBMPlexSans-Regular.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+// 
+// @font-face {
+//   font-family: 'PlexSansText';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/Plex/IBMPlexSans-Text.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/Plex/IBMPlexSans-Text.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+
+@font-face {
+  font-family: 'PlexSerifText';
+  font-style: normal;
+  font-display: swap;
+  src: local(''),
+         url('fonts/Plex/IBMPlexSerif-Text.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+
+}
+// 
+// @font-face {
+//   font-family: 'PPObjectSans';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/PPObjectSans/PPObjectSans-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/PPObjectSans/PPObjectSans-Regular.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+// 
+// @font-face {
+//   font-family: 'SpaceGrotesk';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/SpaceGrotesk/SpaceGrotesk.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/SpaceGrotesk/SpaceGrotesk.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+// 
+// @font-face {
+//   font-family: 'Texgyrepagella';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/Texgyrepagella/TeXGyrePagella-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/Texgyrepagella/TeXGyrePagella-Regular.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+// 
+// 
+// @font-face {
+//   font-family: 'Vollkorn';
+//   font-style: normal;
+//   font-display: swap;
+//   src: local(''),
+//          url('fonts/Vollkorn/Vollkorn-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+//          url('fonts/Vollkorn/Vollkorn-Regular.woff') format('woff'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+// 
+// }
+
+body {
+    font-family: 'PlexSerifText', sans-serif;  // Maybe fave?
+}
+
+code {
+  font-family: 'PlexMonoText', monospace;
+}

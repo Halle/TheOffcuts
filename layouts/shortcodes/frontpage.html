@@ -1,0 +1,3 @@
+{{ range first 2 ( where .Site.Pages "Section" "posts"  ).ByDate }}
+	{{ .Content }}
+{{ end }}

@@ -1,0 +1,193 @@
+.hljs-copy-button {
+	background-color:#000;
+}
+
+.markdown table tr.highlightedline :nth-child(2n), .highlightedline {
+	 background-color:white;
+}
+
+.markdown table tr.firsthighlightedline, .markdown table tr.firsthighlightedline :nth-child(2n) {
+	 padding-top:0.8em;	
+}
+
+.markdown table tr.lasthighlightedline, .markdown table tr.lasthighlightedline :nth-child(2n) {
+	 padding-bottom:0.8em;	
+}
+
+.markdown a:link, aside nav ul a {
+	color: #009999;
+}
+
+.menu-icon-svg {
+	fill: #000000;
+}
+
+.menu-icon-svg:hover {
+	fill: #009999;
+}
+
+.markdown a:visited {
+	color: #990000;
+}
+
+table.hljs-ln, pre code.hljs {
+	overflow:visible;
+}
+
+tbody.highlighttbody {
+	background-color:white;
+	-webkit-box-shadow: 1px 1px 0px 1px #878787; 
+	box-shadow: 1px 1px 0px 1px #878787;
+	display: block;
+	font-size: 70%;
+}
+
+.highlightedline td .hljs-ln-n, .highlightedline td .hljs-ln-n:nth-child(2n) {
+	background-color:white;
+	color:white;
+}
+
+.firsthighlightedline td .hljs-ln-n, .firsthighlightedline td .hljs-ln-n:nth-child(2n) {
+	 padding-top:0.8em;	
+}
+
+.lasthighlightedline td .hljs-ln-n, .lasthighlightedline td .hljs-ln-n:nth-child(2n) {
+	 padding-bottom:0.8em;	
+}
+
+.video-shortcode {
+	max-width: 480px;
+	height: auto;
+}
+
+.highlightedline .hljs-comment {
+	margin-left:-2.1em;
+} 
+
+td .hljs-ln-n {
+	color:#ddd;
+}
+.hljs-ln .middlehighlightedline td, .hljs-ln .middlehighlightedline td:nth-child(2n) {
+	background-color:white;
+}
+
+.markdown table tr th, .markdown table tr td {
+	padding: 0;
+	border: 0;
+}
+
+.highlightedline .hljs-comment {
+	font-style: normal;
+	color:#666;
+}
+
+.hljs-ln .highlightedline td { // Make slashes disappear on highlighted comments
+	font-family:  'SlashReplacer', 'FiraSans';
+	font-size:120%;
+}
+
+@font-face {
+  font-family: 'SlashReplacer';
+  src:  url('fonts/NoSlashes/noslashessmall.woff') format('woff');
+  unicode-range: U+002F;
+}
+
+@font-face {
+  font-family: 'LibHandDis';
+  src:  url('fonts/LibHand/LibHandDis-Regular.woff') format('woff');
+}
+.social-icon {
+	height: 2em;
+	width: auto;
+
+}
+
+
+/*
+Description: Foundation 4 docs style for highlight.js
+Author: Dan Allen <dan.j.allen@gmail.com>
+Website: http://foundation.zurb.com/docs/
+Version: 1.0
+Date: 2013-04-02
+*/
+
+.hljs {
+  background: #eee;
+  color: black;
+}
+
+.hljs-link,
+.hljs-emphasis,
+.hljs-attribute,
+.hljs-addition {
+  color: #070;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong,
+.hljs-string,
+.hljs-deletion {
+  color: #d14;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-quote,
+.hljs-comment {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-section,
+.hljs-title {
+  color: #900;
+}
+
+
+.hljs-class .hljs-title,
+.hljs-title.class_,
+.hljs-type {
+  color: #458;
+}
+
+.hljs-variable,
+.hljs-template-variable {
+  color: #336699;
+}
+
+.hljs-bullet {
+  color: #997700;
+}
+
+.hljs-meta {
+  color: #3344bb;
+}
+
+.hljs-code,
+.hljs-number,
+.hljs-literal,
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #099;
+}
+
+.hljs-regexp {
+  background-color: #fff0ff;
+  color: #880088;
+}
+
+.hljs-symbol {
+  color: #990073;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #007700;
+}

@@ -1,0 +1,28 @@
+{{ $footnotenumber := .Get 0 }}
+
+<span id="footnotesubscript_id_{{ $footnotenumber }}" class="footnotesubscript" style="position: relative; display: inline;">
+	<sup>[{{ $footnotenumber }}]</sup>
+</span>
+      
+<span id="footnote_id_{{ $footnotenumber }}" class="footnotecontent" style="border-bottom: dashed 1px #555; color: #555; font-style:italic;visibility: hidden; position: absolute; display:none; z-index: 1;">
+{{ .Inner }}
+</span>
+  
+    <script>
+
+    var footnotesubscript = document.getElementById("footnotesubscript_id_{{ $footnotenumber }}");
+	footnotesubscript.style.cursor = "pointer";
+	
+	footnotesubscript.onclick = function () {
+	var footnote = document.getElementById("footnote_id_{{ $footnotenumber }}");
+		if (footnote.style.visibility == "visible") {
+    		footnote.style.visibility = "hidden";
+		    footnote.style.display = "none";
+		    footnote.style.position = "absolute";
+		} else {
+		    footnote.style.visibility = "visible";
+		    footnote.style.position = "relative";
+		    footnote.style.display = "inline";
+		}
+	};
+    </script>

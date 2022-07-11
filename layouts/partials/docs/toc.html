@@ -1,0 +1,8 @@
+{{ partial "docs/inject/toc-before" . }}
+	{{ if .IsHome }}
+		{{ range first 2 ( where .Site.Pages "Section" "posts"  ).ByDate }}
+		{{ .TableOfContents }}
+	{{ end }}
+{{ end }}
+{{ .TableOfContents }}
+{{ partial "docs/inject/toc-after" . }}
