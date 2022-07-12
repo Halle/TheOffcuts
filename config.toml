@@ -1,3 +1,7 @@
 baseURL = 'https://theoffcuts.org'
 languageCode = 'en-us'
 title = 'The Offcuts | Halle Winkler'
+[params.shareButtons]
+  size = "small"
+  networks = ["twitter", "linkedin"]
+  icon = "solid"
