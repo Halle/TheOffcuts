@@ -1,7 +1,11 @@
-baseURL = 'https://theoffcuts.org'
-languageCode = 'en-us'
-title = 'The Offcuts | Halle Winkler'
+[params]
+	baseURL = 'https://theoffcuts.org'
+	languageCode = 'en-us'
+	title = 'The Offcuts | Halle Winkler'
+	description = 'The Offcuts | Halle Winkler'
+	images = ['/images/gyro.png']
 [params.shareButtons]
-  size = "small"
-  networks = ["twitter", "linkedin"]
-  icon = "solid"
+	size = "small"
+	networks = ["twitter", "linkedin"]
+	icon = "solid"
+  
