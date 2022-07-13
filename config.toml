@@ -7,4 +7,10 @@
 	size = "small"
 	networks = ["twitter", "linkedin"]
 	icon = "solid"
-  
+  [Social]
+  twitter = "HalleWinkler"
+  [twitter]
+	card = "summary_large_image"
+	site = "@HalleWinkler"
+	creator = "@HalleWinkler"
+	image = "/images/gyro2.png"
