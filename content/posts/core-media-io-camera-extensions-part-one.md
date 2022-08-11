@@ -12,7 +12,7 @@ images: ['/images/cmio/TechnicalDifficulties.jpg']
 
 {{< datecodeanchorslug date="August 11th, 2022" >}}
 
-[To the code →](https://github.com/Halle/OffcutsCam)
+#### [View project on Github](https://github.com/Halle/OffcutsCam){#thecode}
 
 Welcome to the first in a series of three posts about the Core Media IO Camera Extension. I was delighted by the [Create camera extensions with Core Media IO
 ](https://developer.apple.com/videos/play/wwdc2022-10022) WWDC22 video, which is about extensions which can present a system camera for use in any camera-supporting app such as FaceTime, including creative cameras that can take in a feed from an existing camera such as a [Continuity Camera Webcam](https://developer.apple.com/videos/play/wwdc2022/10018/) and add effects to it, but I wished that it had sample code for the two types of cameras that it discussed, software camera and creative camera with configuration app. 
