@@ -14,7 +14,7 @@ images: ['/images/cmio/TechnicalDifficulties.jpg']
 
 #### [View project on Github](https://github.com/Halle/OffcutsCam){#thecode}
 
-Welcome to the first in a series of three posts about the Core Media IO Camera Extension. I was delighted by the [Create camera extensions with Core Media IO
+Welcome to the first in a series of three posts about the **Core Media IO Camera Extension**. I was delighted by the [Create camera extensions with Core Media IO
 ](https://developer.apple.com/videos/play/wwdc2022-10022) WWDC22 video, which is about extensions which can present a system camera for use in any camera-supporting app such as FaceTime, including creative cameras that can take in a feed from an existing camera such as a [Continuity Camera Webcam](https://developer.apple.com/videos/play/wwdc2022/10018/) and add effects to it, but I wished that it had sample code for the two types of cameras that it discussed, software camera and creative camera with configuration app. 
 
 I wrote myself some sample code, and now I would like to share it, and explain a little about how it works. 
@@ -111,7 +111,7 @@ If this looks good, you can build and run. You should see a "Hello, world!" app.
 ![](images/cmio/Package.png)
 
 
-OK, **stretch your legs for a moment** and we'll start configuring the extension. 
+OK, **stretch your legs for a moment** and we'll start configuring the extension and app source. 
 
 Ready?
 
@@ -270,7 +270,7 @@ We have taken pains to get codesigned extension installation working from the st
 
 And that brings us to the conclusion of part one of this series: we have created a **Container App** which can install and uninstall a working **Core Media IO Camera System Extension** that can be selected in FaceTime, and we have removed one big pain point already, which is testing this behavior with full codesigning while still being able to do a normal build and run.
 
-My working version can be seen [here](https://github.com/Halle/OffcutsCam), so if you are getting weird results, just compare them.
+My working version can be seen [here](https://github.com/Halle/OffcutsCam), so if you are getting weird results, you can compare them.
 
 Once you have things working, if you want to play with the extension provider code (and if you like video code, you probably do), be aware that to see software changes in your extension, you currently have to uninstall the old extension using your container app, then reboot, then build and run a new container app version, then install a new extension. Well, we knew we were in beta-land when we started. 
 
