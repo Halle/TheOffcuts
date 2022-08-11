@@ -9,7 +9,6 @@ images: ['/images/cmio/TechnicalDifficulties.jpg']
 # Getting To Grips With The Core Media IO Camera Extension, a 3 part series.
 
 ## Part 1 of 3: The Basics: creating an installable Core Media Camera Extension and its container app.
-
 {{< datecodeanchorslug date="August 11th, 2022" >}}
 
 #### [View project on Github](https://github.com/Halle/OffcutsCam){#thecode}
@@ -29,7 +28,7 @@ and the last is about bringing it all together by **building a creative camera w
 
 Each will build on the previous post. SwiftUI will be the only interface framework used, and there will be no `NSViewRepresentable`, which is going to get spicy in the final entry when we're observing a camera feed in the configuration app.
 
-**Prerequisites**: 
+### Prerequisites
 
 * Ventura beta 5 or later
 * Xcode 14 beta 5 or later
@@ -39,67 +38,70 @@ Each will build on the previous post. SwiftUI will be the only interface framewo
 
 Let's jump in. Here are the instructions for creating a container app and installable CMIO Camera Extension which is a basic software camera (you can also [clone mine from Github or refer to it](https://github.com/Halle/OffcutsCam) as you go):
 
+
+### Project configuration
+
 1. Create a new project of type "macOS App". Title it "OffcutsCam", select your team and organization identifier. Your organization identifier will be different than mine.
 ___
-![](images/cmio/1a.png)
+![](/images/cmio/1a.png)
 ___
-![](images/cmio/1b.png)
+![](/images/cmio/1b.png)
 ___
 2. Go to the app target, select **Signing & Capabilities**, and remove "Hardened Runtime". Under **App Sandbox**, check "Camera" and, for debugging purposes only, set "User Selected File" to "Read Only".
 ___
-![](images/cmio/2a.png)
+![](/images/cmio/2a.png)
 ___
-![](images/cmio/2b.png)
+![](/images/cmio/2b.png)
 ___
 3. Click the "+" button at the top left to add a **capability**. Add "System Extension".
 ___
-![](images/cmio/3.png)
+![](/images/cmio/3.png)
 ___
 4. Now add a target to your project (`File->New->Target`). Scroll all the way down in the target types to choose "Camera Extension". Title it "Extension"
 ___
-![](images/cmio/4a.png)
+![](/images/cmio/4a.png)
 ___
-![](images/cmio/4b.png)
+![](/images/cmio/4b.png)
 ___
 5. Go to the new **extension** target, select **Signing & Capabilities**, and remove "Hardened Runtime". Under **App Sandbox**, check "Camera" and, for debugging purposes only, set "User Selected File" to "Read Only".
 ___
-![](images/cmio/5a.png)
+![](/images/cmio/5a.png)
 ___
-![](images/cmio/5b.png)
+![](/images/cmio/5b.png)
 ___
 6. See that the **extension** target has an **App Group**. Change the extension target app group to `$(TeamIdentifierPrefix)com.politepix.OffcutsCam` but use your organization identifier instead of mine (com.politepix). Copy this app group name.
 ___
-![](images/cmio/6.png)
+![](/images/cmio/6.png)
 ___
 7. Now go back to your **app** target, **Signing & Capabilities**, and add the capability "App Group". In the new configuration area this adds, click "+" and add an app group with the identical app group name as the extension `($(TeamIdentifierPrefix)com.politepix.OffcutsCam` (but with your organization identifier instead of mine). Both of these targets are allowed to communicate with each other via this **App Group**, and are now able to, and we will make use of this in the following two posts.
 ___
-![](images/cmio/7.png)
+![](/images/cmio/7.png)
 ___
 8. Still in your app target, go to **Info** and add the key `Privacy - Camera Usage Description` with a description of `Camera Extension` and while you're here, just to avoid a distracting warning later, add the key `App Category` and set it to `Utility`.
 ___
-![](images/cmio/8a.png)
+![](/images/cmio/8a.png)
 ___
-![](images/cmio/8b.png)
+![](/images/cmio/8b.png)
 ___
 9. Switching to your **extension** target, go to **Info** and add the key `Privacy - Camera Usage Description` with a description of `Camera Extension`. There should be a key entitled `Privacy - System Extension Usage Description` (if there isn't, create it). Add the description `Camera Extension` to it.
 ___
-![](images/cmio/9a.png)
+![](/images/cmio/9a.png)
 ___
-![](images/cmio/9b.png)
+![](/images/cmio/9b.png)
 ___
 10. In the **extension** target, under **Info**, there should be a key `CMIOExtension` which is a dictionary. It should contain a key `CMIOExtensionMachServiceName`. The value of this key should be `$(TeamIdentifierPrefix)$(PRODUCT_BUNDLE_IDENTIFIER)`. Change it to `$(TeamIdentifierPrefix)com.politepix.OffcutsCam `(but with your organization identifier instead of mine).
 ___
-![](images/cmio/10.png)
+![](/images/cmio/10.png)
 ___
 Now, theoretically, doing these steps in this order should result in a properly-configured Container App and Embedded System Extension, where the container app is allowed to install its embedded system extension into macOS. To verify this, you can check the following things in your entitlements files:
 
 App entitlements should have a `System Extension` key set to `YES`. It should have an `App Groups` array with the first element the string `$(TeamIdentifierPrefix)com.politepix.OffcutsCam` but with your organization identifier instead of mine. It should have a key `Camera` set to `YES`. Here is a screenshot:
 ___
-![](images/cmio/AppEntitlements.png)
+![](/images/cmio/AppEntitlements.png)
 ___
 Extension entitlements should have an identical `App Groups` array. It should have a key `Camera` set to `YES`. Here is a screenshot:
 ___
-![](images/cmio/ExtensionEntitlements.png)
+![](/images/cmio/ExtensionEntitlements.png)
 ___
 The app target's **General** pane should show the extension as embedded "(Embed Without Signing)" under **Frameworks, Libraries, and Embedded Content**.
 
@@ -108,12 +110,14 @@ If any of these aren't right, review and see if you set things up correctly. You
 If this looks good, you can build and run. You should see a "Hello, world!" app. You can quit it. Go to `/Applications/OffcutsCam.app` and right-click and choose `Show Package Contents` the package and verify that you can see the extension inside of it like in this screenshot.
 
 
-![](images/cmio/Package.png)
+![](/images/cmio/Package.png)
 
 
 OK, **stretch your legs for a moment** and we'll start configuring the extension and app source. 
 
 Ready?
+
+### Source configuration
 
 1. Open `ExtensionProvider.swift` in the editor. This is where the input and output streams for the camera extension are managed. Apple is kind enough to provide a 100% known-working software camera in all fresh ExtensionProviders. I love that they do this.  
 
@@ -276,7 +280,7 @@ Once you have things working, if you want to play with the extension provider co
 
 This reboot-a-rama is the pain point we are going to remove next, in **Core Media IO Camera Extensions part 2 of 3: Creating a useful software CMIO Camera Extension with communication between a configuration app and an extension *and* painless extension debugging**, out shortly.
 
-# Extro
+## Extro
 
 ✂ - - Non-code thoughts, please stop reading here for the code-only experience - - ✂
 
