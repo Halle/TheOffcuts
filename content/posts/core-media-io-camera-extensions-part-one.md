@@ -261,13 +261,31 @@ Click "Install" and see that you get an informative error that the container app
 
 Let's make things easy on ourselves and set things up so the builds are moved to `/Applications` so we can install the codesigned extension like an enduser would, but without too much bother. Go to the app target's `Build Phases` tab and click "+" and add a new `Copy Files` phase. For "Destination" choose "Absolute Path" and enter `/Applications` for the path. Under "Add files here" click "+" and select `OffcutsCam.app` from the "Products" section. Now a copy of the debug build will always be copied into `/Applications`. Build now, and verify that `OffcutsCam.app` is indeed in `/Applications`.
 
+---
+![](/images/cmio/copyfiles.png)
+---
+
 Next, edit the scheme of **OffcutsCam** (not the **extension**). Under `Run->Info` change the Executable to "Other" and then select OffcutsCam.app in `/Applications`. This way, when Xcode `lldb` attaches to your build, it will attach to the build in `/Applications`, so you are only debugging the build that is being moved to `/Applications`.
+
+---
+![](/images/cmio/scheme.png)
+---
 
 With these steps complete, if you build and run `OffcutsCam.app` (we never need to run the extension directly), you should be able to click "Install" in the app UI and do an installation of your extension. The app should log that the extension needs user approval and macOS should show an alert saying "System Extension Blocked". That's great! That's how it's supposed to work.
 
+---
+![](/images/cmio/approval.png)
+---
+![](/images/cmio/blocked.png)
+---
+
 Click "Open System Settings" on that alert (if you clicked "OK" instead that's fine, go ahead and open the System Settings.app section "Security & Privacy"). Scroll down until you see the notification `System software from application "OffcutsCam" was prevented from loading` and click `Allow`.
 
-Authenticate to install. Now the extension should be installed in your system. You can verify this by opening FaceTime. Under the Video menu you should see OffcutsCam as an offered camera. If you select it, you should see a black screen with a white line moving up and down it. Congrats! Your first CMIO Camera Extension.
+---
+![](/images/cmio/notification.png)
+---
+
+Authenticate to install. Now the extension should be installed in your system. You can verify this by opening FaceTime. Under the `Video` menu you should see OffcutsCam as an offered camera. If you select it, you should see a black screen with a white line moving up and down it. Congrats! Your first CMIO Camera Extension.
 
 We have taken pains to get codesigned extension installation working from the start so that we don't need to debug this area of the project while debugging other complexities later on such as interprocess communication and realtime video processing.
 
