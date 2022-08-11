@@ -3,6 +3,8 @@
 	title = 'The Offcuts | Halle Winkler'
 	description = 'The Offcuts | Halle Winkler'
 	images = ['/images/cmio/TechnicalDifficulties.jpg']
+
+    date_format = "02 Jan 2006"
 [params.shareButtons]
 	size = "small"
 	networks = ["twitter", "linkedin"]
