@@ -31,6 +31,8 @@ Each will build on the previous post. SwiftUI will be the only interface framewo
 
 ### Prerequisites
 
+Much of this will work in macOS 12.3 and later with Xcode 13, so my [sample app for part 1](https://github.com/Halle/OffcutsCam) will build, run and work with them. But, the end result will explore beta APIs, so this series as a whole has been written for the betas. To run all of the code in all three parts:
+
 * Ventura beta 5 or later
 * Xcode 14 beta 5 or later
 * An iPhone XS or later running iOS 16 beta 5 or later if you want to test a Continuity Camera Webcam camera extension in later parts of this series
