@@ -80,7 +80,7 @@ ___
 ___
 ![](/images/cmio/7.png)
 ___
-8. Still in your app target, go to **Info** and add the key `Privacy - Camera Usage Description` with a description of `Camera Extension` and while you're here, just to avoid a distracting warning later, add the key `App Category` and set it to `Utility`.
+8. Still in your app target, go to **Info** and add the key `Privacy - Camera Usage Description` with a description of `Camera Extension` and while you're here, just to avoid a distracting warning later, add the key `App Category` and set it to `Utilities`.
 ___
 ![](/images/cmio/8a.png)
 ___
@@ -107,7 +107,9 @@ ___
 ![](/images/cmio/ExtensionEntitlements.png)
 ___
 The app target's **General** pane should show the extension as embedded "(Embed Without Signing)" under **Frameworks, Libraries, and Embedded Content**.
-
+___
+![](/images/cmio/embed.png)
+___
 If any of these aren't right, review and see if you set things up correctly. You can compare to my [completed version](https://github.com/Halle/OffcutsCam).
 
 If this looks good, you can build and run. You should see a "Hello, world!" app. You can quit it. Go to `/Applications/OffcutsCam.app` and right-click and choose `Show Package Contents` the package and verify that you can see the extension inside of it like in this screenshot.
@@ -121,9 +123,8 @@ Ready?
 
 ### Source configuration
 
-1. Open `ExtensionProvider.swift` in the editor. This is where the input and output streams for the camera extension are managed. Apple is kind enough to provide a 100% known-working software camera in all fresh ExtensionProviders. I love that they do this.  
-
-Do a search and replace in this file for every occurrence of `SampleCapture` and change it to `OffcutsCam`. Change the occurrence of `OffcutsCam (Swift)` to just `OffcutsCam`. This is how we are letting the system and the user know which camera this is. That's it for `ExtensionProvider.swift`, for this post (there will be much more `ExtensionProvider` in the following two posts). But for now, we want to get this default software camera extension fully working so we have a clean canvas to paint on.
+1. Open `ExtensionProvider.swift` in the editor. This is where the input and output streams for the camera extension are managed. Apple is kind enough to provide a 100% known-working software camera in all fresh ExtensionProviders. I love that they do this.
+2. Do a search and replace in this file for every occurrence of `SampleCapture` and change it to `OffcutsCam`. Change the occurrence of `OffcutsCam (Swift)` to just `OffcutsCam`. This is how we are letting the system and the user know which camera this is. That's it for `ExtensionProvider.swift`, for this post (there will be much more `ExtensionProvider` in the following two posts). But for now, we want to get this default software camera extension fully working so we have a clean canvas to paint on.
 
 
 2. Next, we will use Brad Ford's onscreen sample code for extension install and uninstall from [Create camera extensions with Core Media IO
@@ -252,9 +253,12 @@ and this view content:
      
 ```                       
                             
-Change the calls in the container app that load ContentView to load it with its new `SystemExtensionRequestManager`:
+Change the calls in the container app that load ContentView to load it with its new `SystemExtensionRequestManager` and let's give the frame a minimum size:
                             
-`ContentView(systemExtensionRequestManager: SystemExtensionRequestManager(logText: "Starting container app"))`                                 
+```
+ContentView(systemExtensionRequestManager: SystemExtensionRequestManager(logText: "Starting container app"))
+.frame(minWidth: 300, minHeight: 180)
+```                                 
  
 Now build and run the app again. You should see a UI with an `Install` and an `Uninstall` button. 
 
