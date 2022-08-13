@@ -109,10 +109,9 @@ The app target's **General** pane should show the extension as embedded "(Embed 
 If any of these aren't right, review and see if you set things up correctly. You can compare to my [completed version](https://github.com/Halle/OffcutsCam).
 
 If this looks good, you can build and run. You should see a "Hello, world!" app. You can quit it. Go to `/Applications/OffcutsCam.app` and right-click and choose `Show Package Contents` the package and verify that you can see the extension inside of it like in this screenshot.
-
-
+___
 ![](/images/cmio/Package.png)
-
+___
 
 OK, **stretch your legs for a moment** and we'll start configuring the extension and app source. 
 
@@ -261,29 +260,29 @@ Click "Install" and see that you get an informative error that the container app
 
 Let's make things easy on ourselves and set things up so the builds are moved to `/Applications` so we can install the codesigned extension like an enduser would, but without too much bother. Go to the app target's `Build Phases` tab and click "+" and add a new `Copy Files` phase. For "Destination" choose "Absolute Path" and enter `/Applications` for the path. Under "Add files here" click "+" and select `OffcutsCam.app` from the "Products" section. Now a copy of the debug build will always be copied into `/Applications`. Build now, and verify that `OffcutsCam.app` is indeed in `/Applications`.
 
----
+___
 ![](/images/cmio/copyfiles.png)
----
+___
 
 Next, edit the scheme of **OffcutsCam** (not the **extension**). Under `Run->Info` change the Executable to "Other" and then select OffcutsCam.app in `/Applications`. This way, when Xcode `lldb` attaches to your build, it will attach to the build in `/Applications`, so you are only debugging the build that is being moved to `/Applications`.
 
----
+___
 ![](/images/cmio/scheme.png)
----
+___
 
 With these steps complete, if you build and run `OffcutsCam.app` (we never need to run the extension directly), you should be able to click "Install" in the app UI and do an installation of your extension. The app should log that the extension needs user approval and macOS should show an alert saying "System Extension Blocked". That's great! That's how it's supposed to work.
 
----
+___
 ![](/images/cmio/approval.png)
----
+___
 ![](/images/cmio/blocked.png)
----
+___
 
 Click "Open System Settings" on that alert (if you clicked "OK" instead that's fine, go ahead and open the System Settings.app section "Security & Privacy"). Scroll down until you see the notification `System software from application "OffcutsCam" was prevented from loading` and click `Allow`.
 
----
+___
 ![](/images/cmio/notification.png)
----
+___
 
 Authenticate to install. Now the extension should be installed in your system. You can verify this by opening FaceTime. Under the `Video` menu you should see OffcutsCam as an offered camera. If you select it, you should see a black screen with a white line moving up and down it. Congrats! Your first CMIO Camera Extension.
 
@@ -295,7 +294,7 @@ And that brings us to the conclusion of part one of this series: we have created
 
 My working version can be seen [here](https://github.com/Halle/OffcutsCam), so if you are getting weird results, you can compare them.
 
-Once you have things working, if you want to play with the extension provider code (and if you like video code, you probably do), be aware that to see software changes in your extension, you currently have to uninstall the old extension using your container app, then reboot, then build and run a new container app version, then install a new extension. Well, we knew we were in beta-land when we started. 
+Once you have things working, if you want to play with the extension provider code (and if you like video code, you probably do), be aware that to see software changes in your extension, you currently have to uninstall the old extension using your container app, then reboot, then build and run your new container app iteration, then install the changed extension. This is also currently the case if you follow the [debugging advice](https://developer.apple.com/documentation/driverkit/debugging_and_testing_system_extensions) for loading a new extension iteration without reversioning it (i.e., turning off SIP and turning on developer mode will not help with this). If I understand correctly, there is no way currently to securely replace the extension process in a single user session in which there has already been an extension install and activation, so a reboot is necessary.
 
 This reboot-a-rama is the pain point we are going to remove next, in **Core Media IO Camera Extensions part 2 of 3: Creating a useful software CMIO Camera Extension with communication between a configuration app and an extension *and* painless extension debugging**, out shortly.
 
