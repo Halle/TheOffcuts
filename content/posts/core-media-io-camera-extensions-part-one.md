@@ -264,18 +264,19 @@ Now build and run the app again. You should see a UI with an `Install` and an `U
 
 Click "Install" and see that you get an informative error that the container app isn't in `/Applications`. System extensions have to be installed from a container app in `/Applications` to be acceptable to the system.
 
-Let's make things easy on ourselves and set things up so the builds are moved to `/Applications` so we can install the codesigned extension like an enduser would, but without too much bother. Go to the app target's `Build Phases` tab and click "+" and add a new `Copy Files` phase. For "Destination" choose "Absolute Path" and enter `/Applications` for the path. Under "Add files here" click "+" and select `OffcutsCam.app` from the "Products" section. Now a copy of the debug build will always be copied into `/Applications`. Build now, and verify that `OffcutsCam.app` is indeed in `/Applications`.
+Let's make things easy on ourselves and set things up so the builds are moved to `/Applications` so we can install the codesigned extension like an enduser would, but without too much bother. 
 
-___
-![](/images/cmio/copyfiles.png)
-___
-
-Next, edit the scheme of **OffcutsCam** (not the **extension**). Under `Run->Info` change the Executable to "Other" and then select OffcutsCam.app in `/Applications`. This way, when Xcode `lldb` attaches to your build, it will attach to the build in `/Applications`, so you are only debugging the build that is being moved to `/Applications`.
-
+Let's edit the scheme for OffcutsCam.app,. In the left column under `Build`, which we can open with the disclosure triangle, add a Post-Action script reading `ditto "${CODESIGNING_FOLDER_PATH}" "/Applications/${FULL_PRODUCT_NAME}"`. This will copy our app into `/Applications` once all building and signing is complete. 
 ___
 ![](/images/cmio/scheme.png)
 ___
 
+Close the scheme, and build and run. Check `/Applications` and verify that `OffcutsCam.app` is in there.
+
+Next, edit the app scheme a second time, and this time choose `Run`, and change the Executable. Select "Other", and then navigate to your `/Applications` folder and select your build of `OffcutsCam.app` that is now there. We've told the debugger to attach to our copy in `/Applications` instead of the one in `DerivedData`.
+___
+![](/images/cmio/scheme2.png)
+___
 With these steps complete, if you build and run `OffcutsCam.app` (we never need to run the extension directly), you should be able to click "Install" in the app UI and do an installation of your extension. The app should log that the extension needs user approval and macOS should show an alert saying "System Extension Blocked". That's great! That's how it's supposed to work.
 
 ___
@@ -284,7 +285,7 @@ ___
 ![](/images/cmio/blocked.png)
 ___
 
-Click "Open System Settings" on that alert (if you clicked "OK" instead that's fine, go ahead and open the System Settings.app section "Security & Privacy"). Scroll down until you see the notification `System software from application "OffcutsCam" was prevented from loading` and click `Allow`.
+Click "Open System Settings" on that alert (if you clicked "OK" instead that's fine, go ahead and open the System Settings.app section "Security & Privacy"). Scroll down until you see the notification `System software from application "OffcutsCam" was blocked from loading` and click `Allow`.
 
 ___
 ![](/images/cmio/notification.png)
@@ -294,7 +295,7 @@ Authenticate to install. Now the extension should be installed in your system. Y
 
 We have taken pains to get codesigned extension installation working from the start so that we don't need to debug this area of the project while debugging other complexities later on such as interprocess communication and realtime video processing.
 
-**Note**: if you start getting a codesigning error that the extension doesn't match the app when building or running, or similar intermittent complaining at build that doesn't seem 100% believable, this can be fixed by navigating to the app's `Build Phases`, and under your "Copy Files" phase that moves the executable to `/Applications`, checking "Copy only when installing", building and running, and then unchecking it again and building and running. This fragility is not great, but I think it's preferable to building and running in `DerivedData` or turning off SIP in order to disable the codesigning requirements.
+**Note**: if you start getting a codesigning error that the extension doesn't match the app when building or running, or similar intermittent complaining at build that doesn't seem 100% believable, this can be fixed by navigating to the app's `Build Phases`, and under your "Copy Files" phase that moves the executable to `/Applications`, checking "Copy only when installing", building and running, and then unchecking it again and building and running. Sometimes this ca be resolved simply by first building without running, then doing a build and run. This fragility is not great, but I think it's preferable to building and running in `DerivedData` where we can't install from, or turning off SIP in order to disable the install location/codesigning requirements.
 
 And that brings us to the conclusion of part one of this series: we have created a **Container App** which can install and uninstall a working **Core Media IO Camera System Extension** that can be selected in FaceTime, and we have removed one big pain point already, which is testing this behavior with full codesigning while still being able to do a normal build and run.
 
