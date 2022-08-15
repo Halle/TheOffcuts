@@ -266,7 +266,7 @@ Click "Install" and see that you get an informative error that the container app
 
 Let's make things easy on ourselves and set things up so the builds are moved to `/Applications` so we can install the codesigned extension like an enduser would, but without too much bother. 
 
-Let's edit the scheme for OffcutsCam.app,. In the left column under `Build`, which we can open with the disclosure triangle, add a Post-Action script reading `ditto "${CODESIGNING_FOLDER_PATH}" "/Applications/${FULL_PRODUCT_NAME}"`. This will copy our app into `/Applications` once all building and signing is complete. 
+Let's edit the scheme for OffcutsCam.app. In the left column under `Build`, which we can open with the disclosure triangle, add a Post-Action "Run Script Action" script reading `ditto "${CODESIGNING_FOLDER_PATH}" "/Applications/${FULL_PRODUCT_NAME}"`. This will copy our app into `/Applications` once all building and signing is complete. 
 ___
 ![](/images/cmio/scheme.png)
 ___
