@@ -2,8 +2,6 @@
 	{{ if .IsHome }}
 	{{ $list := (where .Site.Pages "Section" "posts").ByDate }}
 	{{ $len := (len $list) }}
-	{{ $list | safeHTML }}
-		{{ $len | safeHTML }}
 		{{ $latestpost := index ( ( where .Site.Pages "Section" "posts"  ).ByDate )  ( sub $len 2 ) }}
 		{{ $latestpost.TableOfContents }}<br><br>
 		Share this post:
