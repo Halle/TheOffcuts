@@ -1,3 +1,9 @@
+{{ if eq hugo.Environment "production" }}
 {{ $repo := .Get 0 }}
 {{ $json := getJSON "https://api.github.com/repos/Halle/" $repo }}
 {{ $json.content | base64Decode | safeHTML }}
+{{ end }}
+
+{{ if eq hugo.Environment "development" }}
+Hello! Inline code linking to Github is turned off in development so there aren't constant API request errors. You can TEMPORARILY disable this by disabling these production/development checks in /layouts/shortcodes/includegithubraw.html and then stopping/restarting hugo locally.
+{{ end }}

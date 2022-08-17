@@ -5,7 +5,7 @@ tags: ['coremedia', 'swift', 'video', 'systemextensions']
 categories: ['Development']
 description: 'Creating an installable Core Media Camera Extension and its container app'
 images: ['/images/cmio/TechnicalDifficulties.jpg']
-date: 2022-08-11T14:10:00+01:00
+date: 2022-08-11T12:00:00+01:00
 ---
 # Getting To Grips With The Core Media IO Camera Extension, a 3 part series.
 

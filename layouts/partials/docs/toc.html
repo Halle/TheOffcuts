@@ -1,6 +1,6 @@
 {{ partial "docs/inject/toc-before" . }}
 	{{ if .IsHome }}
-		{{ $latestpost := index ( ( where .Site.Pages "Section" "posts"  ).ByDate ) 1 }}
+		{{ $latestpost := index ( ( where .Site.Pages "Section" "posts"  ).ByDate ) 2 }}
 		{{ $latestpost.TableOfContents }}<br><br>
 		Share this post:
 		{{ partial "share-buttons" $latestpost }}

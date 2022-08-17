@@ -5,7 +5,7 @@ tags: ['swiftui', 'swift charts', 'coremotion', 'prototyping']
 categories: ['Development']
 description: 'Prototyping a stationary bike "step" counter with Swift Charts'
 images: ['/images/gyro2.png']
-date: 2022-07-11T14:10:00+01:00
+date: 2022-07-11T12:00:00+01:00
 ---
 
 ## Prototyping a stationary bike "step" counter with Swift Charts
