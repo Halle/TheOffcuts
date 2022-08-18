@@ -216,9 +216,9 @@ Next, we want to actually load our extension, so let's open FaceTime and select 
 
 Now, if we run the app and click the `Change Image` button, we will see our debug logging in `Console.app`. Since we're filtering there on our shared subcategory, we see logging from the app and the extension. If we add a filter in the search field of Console.app for `Extension` and set its type to `Category` we will only see the extension output. If we used the category `Application` instead, we would only see the app output.
 
-**Tip**: when you are debugging an extension by observing `Console.app` logging, you should occasionally filter by the extension name as a regular "contains" string and not only as a subsystem to catch your own logging. Why? Because another app or process might be the one complaining about your extension process, and that may be where you get the info you need to solve a bug.
+**Tip**: when you are debugging an extension by observing `Console.app` logging, you should occasionally filter by the extension name as a regular "contains" string and not only by the subsystem you set to catch your own debug output. Why? Because another app or process might be the one complaining about your extension process, and that may be where you get the info you need to solve a bug.
 
-Great, we can now do part of our debugging with Console.app, but we don't yet know how to avoid reboots to examine code. To start dismantling the reboot industrial complex, the next tool in our toolbox will be `lldb`.
+So, we can now do part of our debugging with Console.app, but we don't yet know how to avoid reboots to examine code. To start dismantling the reboot industrial complex, the next tool in our toolbox will be `lldb`.
 
 ## Doing something useful
 
