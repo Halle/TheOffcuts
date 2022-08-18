@@ -23,7 +23,7 @@ There will be three posts in the series:
 
 The first post, this one, is about **getting the basics working from the start**,
 
-the second is about **creating a useful software CMIO Camera Extension with communication between a configuration app and an extension *and* painless extension debugging**,
+the second is about [**creating a useful software CMIO Camera Extension with communication between a configuration app and an extension *and* painless extension debugging**](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-two/),
 
 and the last is about bringing it all together by **building a creative camera with realtime effects processing using [vImage Pixel Buffers](https://developer.apple.com/documentation/accelerate/using_vimage_pixel_buffers_to_generate_video_effects), which can use the Continuity Camera Webcam**.
 
@@ -303,7 +303,7 @@ My working version can be seen [here](https://github.com/Halle/OffcutsCam), so i
 
 Once you have things working, if you want to play with the extension provider code (and if you like video code, you probably do), be aware that to see software changes in your extension, you currently have to uninstall the old extension using your container app, then reboot, then build and run your new container app iteration, then install the changed extension. This is also currently the case if you follow the [debugging advice](https://developer.apple.com/documentation/driverkit/debugging_and_testing_system_extensions) for loading a new extension iteration without reversioning it (i.e., turning off SIP and turning on developer mode will not help with this). If I understand correctly, there is no way currently to securely replace the extension process in a single user session in which there has already been an extension install and activation, so a reboot is necessary.
 
-This reboot-a-rama is the pain point we are going to remove next, in **Core Media IO Camera Extensions part 2 of 3: Creating a useful software CMIO Camera Extension with communication between a configuration app and an extension *and* painless extension debugging**, out shortly.
+This reboot-a-rama is the pain point we are going to remove next, in [**Core Media IO Camera Extensions part 2 of 3: Creating a useful software CMIO Camera Extension with communication between a configuration app and an extension *and* painless extension debugging**](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-two/).
 
 ## Extro
 
