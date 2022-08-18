@@ -469,7 +469,7 @@ Change anything that loads ContentView() to load it like this:
 ContentView(endToEndStreamProvider: EndToEndStreamProvider())
            
 ```
-You can see that we are trying to start `ExtensionProvider` as it is started in the extension's `main()` function, but without the parts we have no access to.
+You can see that we are trying to start `ExtensionProvider` as it is started in the extension's `main()` function, but attempting to substitute for the parts we have no access to.
 
 In the navigator, select the files `Clean.jpg`, `Dirty.jpg`, `NotificationName.swift`, and `ExtensionProvider.swift` and add them to the new target:
 ___
