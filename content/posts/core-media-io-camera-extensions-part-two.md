@@ -34,7 +34,7 @@ As we've seen, Core Media IO Camera Extensions use a container app to install an
 
 The container app can become a configuration app by using some form of interprocess communication. The app is a process and the extension is a separate process, so their code doesn't speak to each other directly, and in fact, there is no reason to assume they will both be an active process simultaneously – the user can effectively choose to load one process, the other, both, or none. The WWDC video states that the extension is run by a different user role account than the user's account, for security. They are genuinely separate.
 
-Now, what I really wanted to show you was how to share an App Group `UserDefaults` between the container app and the extension, and then use `CFNotification` to message between them. This covers many cases and it also encourages an uncoupled communication design.
+What I really wanted to show you was how to share an App Group `UserDefaults` between the container app and the extension, and then use `CFNotification` to message between them. This covers many cases and it also encourages an uncoupled communication design.
 
 The docs indicate that using `UserDefaults` invoked with `suiteNamed:` in a shared App Group container is supported, and we have an App Group, and I have seen it work in some OS versions. But, after a bit of time examining my results with those `UserDefaults` across different betas and current OS versions, I have the feeling that how it's "supposed" to work is in flux right now, and I suspect I'd be sharing code with a very short expiration date. 
 
@@ -185,7 +185,7 @@ private func stopNotificationListeners() {
 
 This shows that we are going to listen for a notification that the app is sending to `CFNotificationCenterGetDarwinNotifyCenter` and get it into a switch case of our `NotificationName` enum.
 
-Now, if we could see extension logging in Xcode, we would run our extension and press the container app button to see if communication is working, but we can't log the extension output to Xcode.
+If we could see extension logging in Xcode, we would run our extension and press the container app button to see if communication is working, but we can't log the extension output to Xcode.
 
 It is necessary to install and activate the extension and open `Console.app`, and that will allow us to view all of our unified logging output that we wrote with our `logger` in the console.
 
@@ -214,7 +214,7 @@ Now that we have quieted things down, we will go to `Console.app->Action->View D
 
 Next, we want to actually load our extension, so let's open FaceTime and select our camera. The extension process isn't going to load unless an app uses the camera.
 
-Now, if we run the app and click the `Change Image` button, we will see our debug logging in `Console.app`. Since we're filtering there on our shared subcategory, we see logging from the app and the extension. If we add a filter in the search field of Console.app for `Extension` and set its type to `Category` we will only see the extension output. If we used the category `Application` instead, we would only see the app output.
+Now that the camera extension is loaded, if we run the app and click the `Change Image` button, we will see our debug logging in `Console.app`. Since we're filtering there on our shared subcategory, we see logging from the app and the extension. If we add a filter in the search field of Console.app for `Extension` and set its type to `Category` we will only see the extension output. If we used the category `Application` instead, we would only see the app output.
 
 **Tip**: when you are debugging an extension by observing `Console.app` logging, you should occasionally filter by the extension name as a regular "contains" string and not only by the subsystem you set to catch your own debug output. Why? Because another app or process might be the one complaining about your extension process, and that may be where you get the info you need to solve a bug.
 
@@ -235,7 +235,7 @@ Download [this](https://theoffcuts.org/images/cmio/Clean.jpg) image and [this](h
 Build and run the app, and then very that these images will be available to your extension bundle by opening `Terminal.app` and running 
 `open /Applications/OffcutsCam.app/Contents/Library/SystemExtensions/com.politepix.OffcutsCam.Extension.systemextension/Contents/Resources` so you can see if they're both in there. If not, try building the extension directly in Xcode and then going back to building and running the application (this shouldn't be necessary, but it helped with this issue once in my experience, so give it a try). If you still don't have the images at the necessary location, troubleshoot whether you really added them to the extension target. Once you see them, proceed.
 
-OK, now, let's open `ExtensionProvider.swift`. First, change the framerate at the top of the file to 1. We are going to show a static image so we don't need to burn fuel by refreshing it 60x/sec:
+OK, let's open `ExtensionProvider.swift`. First, change the framerate at the top of the file to 1. We are going to show a static image so we don't need to burn fuel by refreshing it 60x/sec:
 
 ```
 let kFrameRate: Int = 1
@@ -374,7 +374,7 @@ Build and run, and use the application to uninstall your old extension, reboot, 
 
 When you run this version of the extension, by selecting it in FaceTime, you will see that it almost works, but that it doesn't quite. The technical difficulties image is shown in the camera, but in mirror image.
 
-We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the Xcode version of the lldb debugger to our extension while it is running in FaceTime and do some diagnosis. While FaceTime is using the extension, get it's `pid` by opening `Terminal.app` and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Now, in Xcode, go to `Debug->Attach to Process by PID or Name...` and enter that PID and choose "root" as the account to debug with. 
+We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the Xcode version of the lldb debugger to our extension while it is running in FaceTime and do some diagnosis. While FaceTime is using the extension, get it's `pid` by opening `Terminal.app` and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Open Xcode and choose `Debug->Attach to Process by PID or Name...` and enter that PID, and choose "root" as the account to debug with. 
 
 ___
 ![](/images/cmio/lldb.png)
@@ -474,7 +474,7 @@ ___
 ![](/images/cmio/target.png)
 ___
 
-Now, in `ExtensionProvider.swift`, make the following small changes so we can receive the camera's buffers in our end-to-end app.
+In `ExtensionProvider.swift`, make the following small changes so we can receive the camera's buffers in our end-to-end app.
 
 Add this protocol to the top of the file:
 ```
@@ -531,13 +531,13 @@ context.draw(image, in: region)
 
 Now when I run the end-to-end testing app, I see my image oriented correctly. You can build and run a new `OffcutsCam.app` and install the fixed extension now that image debugging is done for now, and you should see it working.
 
-Now, the end-to-end app tool has some maintenance attached to it. The goal is that it should do very little, but what it should do should approximate what the system does with the camera's output stream, with the same requirements and behaviors. That's why it creates its image from an IOSurface and not from the CVPixelBuffer, for instance, because if the CVPixelBuffer was lacking an IOSurface, and that is possible in a valid CVPixelBuffer, we could successfully make an image from it in our end-to-end testing app, but we would not get an image in FaceTime when using our camera.
+The end-to-end app tool has some maintenance attached to it. The goal is that it should do very little, but what it does should approximate what the system does with the camera's output stream, with the same requirements and behaviors. That's why it creates its image from an `IOSurface` and not from the `CVPixelBuffer`, for instance, because if the `CVPixelBuffer` was lacking an `IOSurface`, and that is possible in a valid `CVPixelBuffer`, we could successfully make an image from it in our end-to-end testing app, but we would not get an image in FaceTime when using our camera, because the camera system passes `IOSurface` for efficiency.
 
-Currently, I would be willing to bet that this vertical-access flipping in the end-to-end app isn't correct for pixel buffers that originate from AVCaptureSession video, so I foresee a future improvement in which, instead of flipping the image, it complains when a pixel buffer was created with the wrong format or properties that would result in being in the wrong coordinate space. But, it's a lot easier to do the research and experimentation now.
+My first expected maintenance of this tool: I suspect my vertical-access flipping in the end-to-end app isn't correct for pixel buffers that originate from AVCaptureSession video, so I foresee a future improvement in which, instead of flipping the image, it complains when a pixel buffer was created with the wrong format or properties that would result in being in the wrong coordinate space once it gets to the camera system. But, it's a **lot** easier to do that research and experimentation now.
 
 ## Changing the extension by using the container app, finally
 
-Now we can have the app talk to the extension and make a change in it. We will test this in the end-to-end testing app, and once it is working, we'll reboot and view it in the actual extension.
+Now we can finally have the app talk to the extension and make a change in it. We will test this in the end-to-end testing app, and once it is working, we'll reboot and view it in the actual extension.
 
 In `ExtensionProvider.swift`, go to `private func notificationReceived(notificationName: String)` and, under `case .changeImage:`, replace the two logging lines with this:
 
