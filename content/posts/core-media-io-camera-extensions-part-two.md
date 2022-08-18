@@ -520,7 +520,9 @@ if self._isExtension { // If I'm the extension, send to output stream
 }
 ```                                                   
 
-Now we can send the buffers to the output stream when ExtensionProvider is in a camera extension, and send them to the end-to-end app when we run it directly. We want to attempt to make the end-to-end app behave as similarly as possible to the CMIO Camera Extension output stream so it is helpful for our debugging. If you now build and run the end to end app, you should see it break on our last breakpoint we sent in `ExtensionProvider.swift`. Remove the breakpoint and continue. You should see our image in the app, flipped on its vertical axis just like in our video feed. Now we can debug the extension code as if it were an app.
+Now we can send the buffers to the output stream when the `ExtensionProvider` is in a camera extension, and send them to the end-to-end app when we run it directly. We want to attempt to make the end-to-end app behave as similarly as possible to the CMIO Camera Extension output stream so it is helpful for our debugging. If you now build and run the end to end app, you should see it break on our last breakpoint we sent in `ExtensionProvider.swift`.
+
+Remove the breakpoint and continue. You should see our image in the app, flipped on its vertical axis just like in our video feed. Now we can debug the extension code as if it were an app.
 
 I am going to add a transform to the `ExtensionDeviceSource` function `func pixelBufferFromImage(_ image: CGImage) -> CVPixelBuffer?`. I will replace the line `context.draw(image, in: region)` with this: 
 ```
@@ -582,7 +584,7 @@ Now, when we run the end-to-end testing app and run `OffcutsCam.app`, clicking "
 
 Since we seem to have a working implementation, let's build and run a new OffcutsCam.app (not the end-to-end testing app), uninstall the old extension, reboot, and install a new extension.
 
-It works! Well, mine works, yours might need some more debugging. Good thing you know how to use unified logging, lldb, and an end-to-end testing app to debug your CMIO Camera Extension with (almost) no reboots. You can take a look at my working version on [Github](https://github.com/Halle/TechnicalDifficulties), remembering to change all incidences of team ID and organization ID from mine to yours.
+It works! Well, mine works; yours might need some more debugging. Good thing you know how to use unified logging, Xcoe lldb, and an end-to-end testing app to debug your CMIO Camera Extension with (almost) no reboots. You can take a look at my working version on [Github](https://github.com/Halle/TechnicalDifficulties), remembering to change all incidences of team ID and organization ID from mine to yours.
 
 Now that we know how to make a software camera extension with communication from its container app, and we know how to debug, next up will be fun stuff, in **part 3 of my CMIO Camera Extension Series: building a creative camera with realtime effects processing using vImage Pixel Buffers, which can use the Continuity Camera Webcam**.
 
