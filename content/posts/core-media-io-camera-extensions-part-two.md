@@ -40,7 +40,7 @@ The docs indicate that using `UserDefaults` invoked with `suiteNamed:` in a shar
 
 **Then** I thought I'd show you some simple XPC instead, but it currently raises the same "is this supposed to be like this?" questions as `UserDefaults`. Well, this is a new way of distributing these extensions, so we can expect some bumps and changes. 
 
-Anyway. Let us not chase waterfalls; let us stick to the rivers and the lakes that we're used to, and just use `CFNotification` for now. I think I'll come back and revise this to include sharing data once Ventura has settled down.
+Anyway. Let us not chase waterfalls; let us stick to the rivers and the lakes that we're used to, and only use `CFNotification` for now. I think I'll come back and revise this to include sharing data once Ventura has settled down.
 
 ## Notifications (and Logger)
 
@@ -57,7 +57,7 @@ import Foundation
 
 enum NotificationName: String, CaseIterable {
     case changeImage = "Z39BRGKSRW.com.politepix.OffcutsCam.changeImage"
-    // add more cases later just like this one, changing the case `changeImage` and the substring "changeImage" to a different notification name you want to pass.
+    // add more cases later like this one, changing the case `changeImage` and the substring "changeImage" to a different notification name you want to pass.
 }
 ```
 
@@ -183,13 +183,13 @@ private func stopNotificationListeners() {
 }
 ```
 
-So, as you can see, we are going to listen for a notification that the app is sending to `CFNotificationCenterGetDarwinNotifyCenter` and get it into a switch case of our `NotificationName` enum.
+This shows that we are going to listen for a notification that the app is sending to `CFNotificationCenterGetDarwinNotifyCenter` and get it into a switch case of our `NotificationName` enum.
 
-Now, if we could see extension logging in Xcode, we would just run our extension and press the container app button to see if communication is working, but we can't log the extension output to Xcode.
+Now, if we could see extension logging in Xcode, we would run our extension and press the container app button to see if communication is working, but we can't log the extension output to Xcode.
 
 It is necessary to install and activate the extension and open `Console.app`, and that will allow us to view all of our unified logging output that we wrote with our `logger` in the console.
 
-I mentioned at the end of part 1 that we were going to get around the necessity to constantly reboot in order to debug, and we are, but to get there we're going to need to do a reboot, so we can see what it is like to debug an extension naively.
+I mentioned at the end of part 1 that we were going to get around the necessity to constantly reboot in order to debug, and we are, but to get there we're going to need to do a reboot, so we can see what it is like to debug a camera extension naively.
 
 ## systemextensionsctl
 
@@ -208,7 +208,7 @@ What it is telling you is that the extension isn't really going to be deactivate
 
 ## Viewing our logging in Console.app
 
-After you have successfully installed it, open `Console.app` and click "Start Streaming". You will see a **lot** of messages. In the search filter field in the upper right, enter `com.politepix.offcutscam` (but with your organization ID) so we can just look for messages about or from our extension and app. There is a dropdown next to the search, and let's set it to `subsystem`, so we are only receiving output from our logger. 
+After you have successfully installed it, open `Console.app` and click "Start Streaming". You will see a **lot** of messages. In the search filter field in the upper right, enter `com.politepix.offcutscam` (but with your organization ID) so we can look for messages about or from our extension and app. There is a dropdown next to the search, and let's set it to `subsystem`, so we are only receiving output from our logger. 
 
 Now that we have quieted things down, we will go to `Console.app->Action->View Debug Messages` and check that so we can see our debug-level logging. You will probably want to turn this off after you're done debugging your extension because it's intolerably noisy if you ever need to look at OS events.
 
