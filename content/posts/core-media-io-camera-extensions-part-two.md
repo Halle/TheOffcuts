@@ -5,12 +5,12 @@ tags: ['coremedia', 'swift', 'video', 'systemextensions']
 categories: ['Development']
 description: 'Writing a useful software CMIO Camera extension, interprocess communication, painless debugging'
 images: ['/images/cmio/TechnicalDifficulties.jpg']
-date: 2022-08-17T12:00:00+01:00
+date: 2022-08-18T12:00:00+01:00
 ---
 # Getting To Grips With The Core Media IO Camera Extension, a 3 part series.
 
 ## Part 2 of 3: Creating an useful software Core Media Camera Extension, interprocess communication, and painless debugging.
-{{< datecodeanchorslug date="August 17th, 2022" >}}
+{{< datecodeanchorslug date="August 18th, 2022" >}}
 
 #### [View project on Github](https://github.com/Halle/TechnicalDifficulties){#thecode}
 
@@ -228,7 +228,7 @@ You know, [this guy](https://www.youtube.com/watch?v=Mh4f9AYRCZY) trying in vain
 
 When something went wrong in the news studio, they could always cut to the "Technical Difficulties" placard in the most dire cases. We as individuals deserve at least this much dignity. We will make a "We've Having Technical Difficulties" software camera so that when things get weird, you too can cut away.
 
-Download [this]() image and [this]() image, and add them to your extension target. 
+Download [this](https://theoffcuts.org/images/cmio/Clean.jpg) image and [this](https://theoffcuts.org/images/cmio/Dirty.jpg) image, and add them to your extension target. 
 
 ![](/images/cmio/images.png)
 
