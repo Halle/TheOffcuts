@@ -248,7 +248,7 @@ Change the video dimensions from this:
 to this:
 `let dims = CMVideoDimensions(width: 1080, height: 720)`
 
-Next, replace the entirety of `func startStreaming() {` with this:
+Next, replace the entirety of `func startStreaming()` with this:
 
 ```
 func startStreaming() {
@@ -319,7 +319,7 @@ func startStreaming() {
 }
 ```
 
-You can see that what we are doing here is loading in some image data and getting a CVPixelBuffer from it so we can .send() it to our output stream. Add the function that will get the pixel buffer with the correct attributes:
+You can see that what we are doing here is loading in some image data and getting a CVPixelBuffer from it so we can `.send(...)` it to our output stream. Add the function that will get the pixel buffer with the correct attributes:
 
 ```
 func pixelBufferFromImage(_ image: CGImage) -> CVPixelBuffer? {
@@ -376,7 +376,7 @@ Build and run, and use the application to uninstall your old extension, reboot, 
 
 When you run this version of the extension, by selecting it in FaceTime, you will see that it almost works, but that it doesn't quite. The technical difficulties image is shown in the camera, but in mirror image.
 
-We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the Xcode version of the lldb debugger to our extension while it is running in FaceTime and do some diagnosis. While FaceTime is using the extension, get it's `pid` by opening `Terminal.app` and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Open Xcode and choose `Debug->Attach to Process by PID or Name...` and enter that PID, and choose "root" as the account to debug with. 
+We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the Xcode version of the lldb debugger to our extension while it is running in FaceTime and do some diagnosis. While FaceTime is using the extension, get its `pid` by opening `Terminal.app` and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Open Xcode and choose `Debug->Attach to Process by PID or Name...` and enter that PID, and choose "root" as the account to debug with. 
 
 ___
 ![](/images/cmio/lldb.png)
@@ -392,7 +392,7 @@ Check it out, we're live-debugging our installed extension. Let's open the debug
 
 Hmm, the contents of the buffer look correct. This means that the camera output stream is being displayed in a different coordinate space after it leaves the extension.
 
-We probably have to do some real debugging here. We have two legs of our debugging available: we know how to use unified logging to see live extension console output, and we know how to examine objects in the live extension in Xcode's lldb debugger. But this is not quite enough to save us from reboot hell because we can't change code and see results instantly.
+We probably have to try out some code approaches here. We have two legs of our debugging available: we know how to use unified logging to see live extension console output, and we know how to examine objects in the live extension in Xcode's lldb debugger. But this is not quite enough to save us from reboot hell, because we still can't change code and see results instantly.
 
 So, the last and most important leg of our extension debug practice is an end-to-end testing app.
 
