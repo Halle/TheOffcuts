@@ -22,7 +22,7 @@ The second post, this one, is about **creating a useful software CMIO Camera Ext
 
 The last will be about bringing it all together by **building a creative camera with realtime effects processing using [vImage Pixel Buffers](https://developer.apple.com/documentation/accelerate/using_vimage_pixel_buffers_to_generate_video_effects), which can use the Continuity Camera Webcam**.
 
-Let's jump in. In [part 1](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/), we created a known-working basic software CMIO Camera Extension camera with a container app which could install it, that we could use in FaceTime in order to watch a white stripe move up and down. You can [view or clone my version](https://github.com/Halle/OffcutsCam) of it, keeping in mind that you will need to change all references to my organization ID (`com.politepix`) and my team ID to match your own, or it definitely won't work. Ideally you have your own that you made in the [previous post](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/) and it is still working, so we can continue with it here.
+Let's jump in. In [part 1](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/), we created a known-working basic software CMIO Camera Extension camera with a container app which could install it, that we could use in **FaceTime** in order to watch a white stripe move up and down. You can [view or clone my version](https://github.com/Halle/OffcutsCam) of it, keeping in mind that you will need to change all references to my organization ID (`com.politepix`) and my team ID to match your own, or it definitely won't work. Ideally you have your own that you made in the [previous post](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/) and it is still working, so we can continue with it here.
 
 We are going to examine three more fairly buttoned-down topics today that will leave us prepared to get satisfyingly weird in part 3, coming up next. They are:
 
@@ -184,7 +184,7 @@ There is a handy CLI tool called `systemextensionsctl` and let's open **Terminal
 `*	*	Z39BRGKSRW	com.politepix.OffcutsCam.Extension (1.0/1)	Extension	[activated enabled]`
 
 
-If you haven't already done so, build and run `/Applications/OffcutsCam.app` and press the "uninstall" button to uninstall your previous version of the extension. Now `systemextensionsctl list` will look like this:
+If you haven't already done so, build and run `/Applications/OffcutsCam.app` and press the **`uninstall button to uninstall your previous version of the extension. Now `systemextensionsctl list` will look like this:
 
 `		Z39BRGKSRW	com.politepix.OffcutsCam.Extension (1.0/1)	Extension	[terminated waiting to uninstall on reboot]`
 
@@ -193,11 +193,11 @@ What it is telling you is that the extension isn't going to be fully uninstalled
 
 ## Viewing our logging in Console.app
 
-After you have successfully installed it, open **Console.app** and click "Start Streaming". You will see a **lot** of messages. In the search filter field in the upper right, enter `com.politepix.offcutscam` (but with your organization ID) so we can look for messages about or from our extension and app. There is a dropdown in the filter field next to your search token, and let's set it to `subsystem`, so we are only receiving output from our logger. 
+After you have successfully installed it, open **Console.app** and click **`Start Streaming`**. You will see a **lot** of messages. In the search filter field in the upper right, enter `com.politepix.offcutscam` (but with your organization ID) so we can look for messages about or from our extension and app. There is a dropdown in the filter field next to your search token, and let's set it to `subsystem`, so we are only receiving output from our logger. 
 
 Now that we have quieted things down, we will go to `Console.app->Action->View Debug Messages` and check that so we can see our debug-level logging. You will probably want to turn this off after you're done debugging your extension because it's intolerably noisy if you ever need to look at OS events.
 
-Next, we want to actually load our extension, so let's open FaceTime and select our camera. The extension process isn't going to load unless an app uses the camera.
+Next, we want to actually load our extension, so let's open **FaceTime** and select our camera. The extension process isn't going to load unless an app uses the camera.
 
 Now that the camera extension is loaded, if we run the app and click the `Change Image` button, we will see our debug logging in **Console.app**. Since we're filtering there on our shared subsystem, we see logging from the app and the extension. If we add a filter in the search field of **Console.app** for `Extension` and set its type to `Category` we will only see the extension output. If we used the category `Application` instead, we would only see the app output.
 
@@ -357,9 +357,9 @@ Build and run, and use the application to uninstall your old extension, reboot, 
 
 ## Our friend LLDB
 
-When you run this version of the extension, by selecting it in FaceTime, you will see that it almost works, but that it doesn't quite. The technical difficulties image is shown in the camera, but in mirror image.
+When you run this version of the extension, by selecting it in **FaceTime**, you will see that it almost works, but that it doesn't quite. The technical difficulties image is shown in the camera, but in mirror image.
 
-We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the Xcode version of the lldb debugger to our extension while it is running in FaceTime and do some diagnosis. While FaceTime is using the extension, get its `pid` by opening **Terminal.app** and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Open Xcode and choose `Debug->Attach to Process by PID or Name…` and enter that PID, and choose "root" as the account to debug with. 
+We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the Xcode version of the lldb debugger to our extension while it is running in **FaceTime** and do some diagnosis. While **FaceTime** is using the extension, get its `pid` by opening **Terminal.app** and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Open Xcode and choose `Debug->Attach to Process by PID or Name…` and enter that PID, and choose "root" as the account to debug with. 
 
 ___
 ![](/images/cmio/lldb.png)
@@ -369,9 +369,9 @@ You will be asked to authenticate with an admin account and then Xcode will atta
 
 `_streamingCounter += 1`
 
-Now go to FaceTime, select a different camera than ours, and then reselect our camera. In Xcode, your project should break at the breakpoint you set.
+Now go to **FaceTime**, select a different camera than ours, and then reselect our camera. In Xcode, your project should break at the breakpoint you set.
 
-Check it out, we're live-debugging our installed extension. Let's open the debugger pane at the bottom of Xcode. Expand the left side if it isn't already expanded. This is the variable viewer. You should see the object `techDiffBuffer`. Select it by clicking on it.
+Check it out, we're live-debugging our installed extension. Let's open the debugger pane at the bottom of Xcode. Expand the left side if it isn't already expanded. This is the **variable viewer**. You should see the object `techDiffBuffer`. Select it by clicking on it.
 ___
 ![](/images/cmio/lldb2.png)
 ___
@@ -545,9 +545,9 @@ context.draw(image, in: region)
 
 Now when I run the end-to-end testing app, I see my image oriented correctly. You can build and run a new **OffcutsCam.app** and install the fixed extension now that image debugging is done for now, and you should see it working.
 
-The end-to-end app tool has some maintenance attached to it. The goal is that it should do very little, but what it does should approximate what the system does with the camera's output stream, with the same requirements and behaviors. That's why it creates its image from an `IOSurface` and not from the `CVPixelBuffer`, for instance, because if the `CVPixelBuffer` was lacking an `IOSurface`, and that is possible in a valid `CVPixelBuffer`, we could successfully make an image from it in our end-to-end testing app, but we would not get an image in FaceTime when using our camera, because the camera system passes `IOSurface` for efficiency.
+The end-to-end app tool has some maintenance attached to it. The goal is that it should do very little, but what it does should approximate what the system does with the camera's output stream, with the same requirements and behaviors. That's why it creates its image from an `IOSurface` and not from the `CVPixelBuffer`, for instance, because if the `CVPixelBuffer` was lacking an `IOSurface`, and that is possible in a valid `CVPixelBuffer`, we could successfully make an image from it in our end-to-end testing app, but we would not get an image in **FaceTime** when using our camera, because the camera system passes `IOSurface` for efficiency.
 
-My first expected maintenance of this tool: I suspect my vertical-access flipping in the end-to-end app isn't correct for pixel buffers that originate from AVCaptureSession video, so I foresee a future improvement in which, instead of flipping the image, it complains when a pixel buffer was created with the wrong format or properties that would result in being in the wrong coordinate space once it gets to the camera system. But, it's a **lot** easier to do that research and experimentation now.
+My first expected maintenance of this tool: I suspect my vertical-access flipping in the end-to-end app isn't correct for pixel buffers that originate from `AVCaptureSession` video, so I foresee a future improvement in which, instead of flipping the image, it complains when a pixel buffer was created with the wrong format or properties that would result in being in the wrong coordinate space once it gets to the camera system. But, it's a **lot** easier to do that research and experimentation now.
 
 ## Changing the extension by using the container app, finally
 
@@ -588,7 +588,7 @@ guard let bundleURL = Bundle.main.url(forResource: Filename,
 }
 ```
 
-Now, when we run the end-to-end testing app and run **OffcutsCam.app**, clicking "Change Image" shows us a change of image. We can toggle between a dirty and a clean version of the technical difficulties placard.
+Now, when we run the end-to-end testing app and run **OffcutsCam.app**, clicking **`Change Image`** shows us a change of image. We can toggle between a dirty and a clean version of the technical difficulties placard.
 
 ## Reboot and install the extension once it is debugged
 

@@ -1,6 +1,12 @@
 span.Bold { font-weight: bold }
 strong, span.Bold { font-family: 'FiraSans' }
 
+strong code {
+	display: inline-block;
+	border: 1px solid #ccc;
+	color: #444;
+}
+
 .markdown h1, .markdown h2 {
 	line-height: 1.3em;
 }
