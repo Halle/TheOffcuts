@@ -102,7 +102,7 @@ Button(action: {
 .padding()
 ``` 
 
-If you build and run the container app now, you will see a button, and if you click it, it will post a notification and you should be able to see the `logger.debug(...)` line logged in **Xcode**. You can see the beginning of a design, where we add new notifications in `NotificationName` and call them, due to interactions, with `postNotification(named:)` using the cases of the `NotificationName` enum.
+If you build and run the container app now, you will see a button, and if you click it, it will post a notification and you should be able to see the `logger.debug(...)` line logged in Xcode. You can see the beginning of a design, where we add new notifications in `NotificationName` and call them, due to interactions, with `postNotification(named:)` using the cases of the `NotificationName` enum.
 
 Now we will set up receiving notifications in the extension.
 
@@ -170,7 +170,7 @@ private func stopNotificationListeners() {
 
 This shows that we are going to listen for a notification that the app is sending to `CFNotificationCenterGetDarwinNotifyCenter` and get it into a switch case of our `NotificationName` enum.
 
-If we could see extension logging in **Xcode**, we would run our extension and press the container app button to see if communication is working, but we can't log the extension output to **Xcode**.
+If we could see extension logging in Xcode, we would run our extension and press the container app button to see if communication is working, but we can't log the extension output to Xcode.
 
 It is necessary to install and activate the extension and open **Console.app**, and that will allow us to view all of our unified logging output that we wrote with our `logger` in the console.
 
@@ -189,7 +189,7 @@ If you haven't already done so, build and run `/Applications/OffcutsCam.app` and
 `		Z39BRGKSRW	com.politepix.OffcutsCam.Extension (1.0/1)	Extension	[terminated waiting to uninstall on reboot]`
 
 
-What it is telling you is that the extension isn't going to be fully uninstalled until after a reboot – there are no live replacements of an extension process in a single user session. So reboot. After your system comes back up, build and run the container app in **Xcode**, and install your new extension version in the container app. 
+What it is telling you is that the extension isn't going to be fully uninstalled until after a reboot – there are no live replacements of an extension process in a single user session. So reboot. After your system comes back up, build and run the container app in Xcode, and install your new extension version in the container app. 
 
 ## Viewing our logging in Console.app
 
@@ -218,7 +218,7 @@ ___
 ![](/images/cmio/images.png)
 ___
 Build and run the app, and then verify that these images will be available to your extension bundle by opening **Terminal.app** and running 
-`open /Applications/OffcutsCam.app/Contents/Library/SystemExtensions/com.politepix.OffcutsCam.Extension.systemextension/Contents/Resources` so you can see if they're both in there. If not, try building the extension directly in **Xcode** and then going back to building and running the application (this shouldn't be necessary, but it helped with this issue once in my experience, so give it a try). If you still don't have the images at the necessary location, troubleshoot whether you really added them to the extension target. Once you see them, proceed.
+`open /Applications/OffcutsCam.app/Contents/Library/SystemExtensions/com.politepix.OffcutsCam.Extension.systemextension/Contents/Resources` so you can see if they're both in there. If not, try building the extension directly in Xcode and then going back to building and running the application (this shouldn't be necessary, but it helped with this issue once in my experience, so give it a try). If you still don't have the images at the necessary location, troubleshoot whether you really added them to the extension target. Once you see them, proceed.
 
 OK, let's open `ExtensionProvider.swift`. First, change the framerate at the top of the file to 1. We are going to show a static image, so we don't need to burn fuel by refreshing it 60x/sec:
 
@@ -359,23 +359,23 @@ Build and run, and use the application to uninstall your old extension, reboot, 
 
 When you run this version of the extension, by selecting it in **FaceTime**, you will see that it almost works, but that it doesn't quite. The technical difficulties image is shown in the camera, but in mirror image.
 
-We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the **Xcode** version of the lldb debugger to our extension while it is running in **FaceTime** and do some diagnosis. While **FaceTime** is using the extension, get its `pid` by opening **Terminal.app** and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Open **Xcode** and choose `Debug->Attach to Process by PID or Name…` and enter that PID, and choose "root" as the account to debug with. 
+We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the Xcode version of the lldb debugger to our extension while it is running in **FaceTime** and do some diagnosis. While **FaceTime** is using the extension, get its `pid` by opening **Terminal.app** and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Open Xcode and choose `Debug->Attach to Process by PID or Name…` and enter that PID, and choose "root" as the account to debug with. 
 
 ___
 ![](/images/cmio/lldb.png)
 ___
 
-You will be asked to authenticate with an admin account and then **Xcode** will attach to your extension. Since you have its project open, and you built it with debug symbols, we can put breakpoints into `ExtensionProvider.swift` and inspect our variables directly in **Xcode**. Let's do perhaps the single most important **Xcode** lldb trick we can learn for video extension debugging, and quicklook the contents of a pixelbuffer. Place a breakpoint right before this line in `func startStreaming()`:
+You will be asked to authenticate with an admin account and then Xcode will attach to your extension. Since you have its project open, and you built it with debug symbols, we can put breakpoints into `ExtensionProvider.swift` and inspect our variables directly in Xcode. Let's do perhaps the single most important Xcode lldb trick we can learn for video extension debugging, and quicklook the contents of a pixelbuffer. Place a breakpoint right before this line in `func startStreaming()`:
 
 `_streamingCounter += 1`
 
-Now go to **FaceTime**, select a different camera than ours, and then reselect our camera. In **Xcode**, your project should break at the breakpoint you set.
+Now go to **FaceTime**, select a different camera than ours, and then reselect our camera. In Xcode, your project should break at the breakpoint you set.
 
-Check it out, we're live-debugging our installed extension. Let's open the debugger pane at the bottom of **Xcode**. Expand the left side if it isn't already expanded. This is the **variable viewer**. You should see the object `techDiffBuffer`. Select it by clicking on it.
+Check it out, we're live-debugging our installed extension. Let's open the debugger pane at the bottom of Xcode. Expand the left side if it isn't already expanded. This is the **variable viewer**. You should see the object `techDiffBuffer`. Select it by clicking on it.
 ___
 ![](/images/cmio/lldb2.png)
 ___
-Now, with it selected in the variable viewer, press the space key. Whoa, you should see a whole image in that quicklook window. **Xcode** can show you the image contained in a pixel buffer! You can even choose to open it as an image in **Preview.app**. Once you're writing effects, this is going to come in handy.
+Now, with it selected in the variable viewer, press the space key. Whoa, you should see a whole image in that quicklook window. Xcode can show you the image contained in a pixel buffer! You can even choose to open it as an image in **Preview.app**. Once you're writing effects, this is going to come in handy.
 
 Hmm, the contents of the buffer look correct. This means that the camera output stream is being displayed in a different coordinate space after it leaves the extension.
 
@@ -594,7 +594,7 @@ Now, when we run the end-to-end testing app and run **OffcutsCam.app**, clicking
 
 Since we seem to have a working implementation, let's build and run a new **OffcutsCam.app** (not the end-to-end testing app), uninstall the old extension, reboot, and install a new extension.
 
-It works! Well, mine works; yours might need some more debugging. Good thing you know how to use unified logging, **Xcode** lldb, and an end-to-end testing app to debug your CMIO Camera Extension with (almost) no reboots. You can take a look at my working version on [Github](https://github.com/Halle/TechnicalDifficulties), remembering to change all incidences of team ID and organization ID from mine to yours.
+It works! Well, mine works; yours might need some more debugging. Good thing you know how to use unified logging, Xcode lldb, and an end-to-end testing app to debug your CMIO Camera Extension with (almost) no reboots. You can take a look at my working version on [Github](https://github.com/Halle/TechnicalDifficulties), remembering to change all incidences of team ID and organization ID from mine to yours.
 
 Now that we know how to make a software camera extension with communication from its container app, and we know how to debug, next up will be fun stuff, in **part 3 of my CMIO Camera Extension Series: building a creative camera with realtime effects processing using vImage Pixel Buffers, which can use the Continuity Camera Webcam**.
 
