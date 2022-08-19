@@ -388,13 +388,17 @@ You will be asked to authenticate with an admin account and then Xcode will atta
 
 Now go to FaceTime, select a different camera than ours, and then reselect our camera. It should break at the breakpoint and show this in Xcode. 
 
-Check it out, we're live-debugging our installed extension. Let's open the debugger pane at the bottom of Xcode. Expand the left side if it isn't already expanded. You should see the object `techDiffBuffer`. Select it by clicking on it, and then press the space key. Whoa, you should see a whole image in that quicklook window. Xcode can show you the image contained in a pixel buffer! Once you're writing effects, this is going to come in handy.
+Check it out, we're live-debugging our installed extension. Let's open the debugger pane at the bottom of Xcode. Expand the left side if it isn't already expanded. This is the variable viewer. You should see the object `techDiffBuffer`. Select it by clicking on it.
+
+![](/images/cmio/lldb2.png)
+
+Now, with it selected in the variable viewer, press the space key. Whoa, you should see a whole image in that quicklook window. Xcode can show you the image contained in a pixel buffer! You can even choose to open it as an image in `Preview.app`. Once you're writing effects, this is going to come in handy.
 
 Hmm, the contents of the buffer look correct. This means that the camera output stream is being displayed in a different coordinate space after it leaves the extension.
 
-We probably have to try out some code approaches here. We have two legs of our debugging available: we know how to use unified logging to see live extension console output, and we know how to examine objects in the live extension in Xcode's lldb debugger. But this is not quite enough to save us from reboot hell, because we still can't change code and see results instantly.
+We probably have to try out some code approaches here. We have two legs of our debugging available: we know how to use unified logging to see live extension console output, and we know how to set breakpoints and examine variables in the live extension in Xcode's lldb debugger. But this is not quite enough to save us from reboot hell, because we still can't change code and see results right after building.
 
-So, the last and most important leg of our extension debug practice is an end-to-end testing app.
+The last and most important leg of our extension debug practice is an end-to-end testing app.
 
 ## Ending reboots using an end-to-end testing app
 
