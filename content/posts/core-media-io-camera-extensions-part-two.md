@@ -563,10 +563,10 @@ self.deviceSource.stopStreaming()
 self.deviceSource.startStreaming()
 ```
 
-Give ExtensionDeviceSource this var:
+Give `ExtensionDeviceSource` this var:
 `var imageIsClean = true`
 
-And replace these lines in startStreaming():
+And replace these lines in `func startStreaming()`:
 
 ```
 guard let bundleURL = Bundle.main.url(forResource: "Clean",
