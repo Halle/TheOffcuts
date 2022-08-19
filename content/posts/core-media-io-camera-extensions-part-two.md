@@ -195,7 +195,7 @@ I mentioned at the end of part 1 that we were going to get around the necessity 
 
 ## systemextensionsctl
 
-There is a handy CLI tool called `systemextensionsctl` and let's open `Terminal.app` and use it to check the current status of our extension. run `systemextensionsctl list` to see the current state of the user-installed system extensions on your system. If you installed your extension and never uninstalled it, it will look something like this:
+There is a handy CLI tool called `systemextensionsctl` and let's open `Terminal.app` and use it to check the current status of our extension. Run `systemextensionsctl list` to see the current state of the user-installed system extensions on your system. If you installed your extension and never uninstalled it, it will look something like this:
 
 
 `*	*	Z39BRGKSRW	com.politepix.OffcutsCam.Extension (1.0/1)	Extension	[activated enabled]`
