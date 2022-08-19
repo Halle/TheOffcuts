@@ -38,7 +38,7 @@ The container app can become a configuration app by using some form of interproc
 
 What I really wanted to show you was how to share an App Group `UserDefaults` between the container app and the extension, and then use `CFNotification` to message between them. This covers many cases and it also encourages an uncoupled communication design.
 
-The docs indicate that using `UserDefaults` invoked with `suiteNamed:` in a shared App Group container is supported, and we have an App Group, and I have seen it work in some OS versions. But, after a bit of time examining my results with those `UserDefaults` across different betas and current OS versions, I have the feeling that how it's "supposed" to work is in flux right now, and I suspect I could be sharing code with a very short expiration date. 
+The docs indicate that using `UserDefaults` invoked with `UserDefaults(suiteName:)` in a shared App Group container is supported, and we have an App Group, and I have seen it work in some OS versions. But, after a bit of time examining my results with those `UserDefaults` across different betas and current OS versions, I have the feeling that how it's "supposed" to work is in flux right now, and I suspect I could be sharing code with a very short expiration date. 
 
 **Then** I thought I'd show you some simple XPC instead, but it currently raises the same "is this supposed to be like this?" questions as `UserDefaults`. Well, this is a new way of distributing these extensions, so we can expect some bumps and changes. 
 
