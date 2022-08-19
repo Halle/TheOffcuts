@@ -588,7 +588,7 @@ Now, when we run the end-to-end testing app and run `OffcutsCam.app`, clicking "
 
 Since we seem to have a working implementation, let's build and run a new OffcutsCam.app (not the end-to-end testing app), uninstall the old extension, reboot, and install a new extension.
 
-It works! Well, mine works; yours might need some more debugging. Good thing you know how to use unified logging, Xcoe lldb, and an end-to-end testing app to debug your CMIO Camera Extension with (almost) no reboots. You can take a look at my working version on [Github](https://github.com/Halle/TechnicalDifficulties), remembering to change all incidences of team ID and organization ID from mine to yours.
+It works! Well, mine works; yours might need some more debugging. Good thing you know how to use unified logging, Xcode lldb, and an end-to-end testing app to debug your CMIO Camera Extension with (almost) no reboots. You can take a look at my working version on [Github](https://github.com/Halle/TechnicalDifficulties), remembering to change all incidences of team ID and organization ID from mine to yours.
 
 Now that we know how to make a software camera extension with communication from its container app, and we know how to debug, next up will be fun stuff, in **part 3 of my CMIO Camera Extension Series: building a creative camera with realtime effects processing using vImage Pixel Buffers, which can use the Continuity Camera Webcam**.
 
