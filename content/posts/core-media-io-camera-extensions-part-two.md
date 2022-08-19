@@ -547,7 +547,7 @@ if self._isExtension { // If I'm the extension, send to output stream
 }
 ```                                                   
 
-Now we can send the buffers to the output stream when the `ExtensionProvider` is in a camera extension, and send them to the end-to-end app when we run it directly. We want to attempt to make the end-to-end app behave as similarly as possible to the CMIO Camera Extension output stream so it is helpful for our debugging. If you now build and run the end to end app, you should see it break on our last breakpoint we sent in `ExtensionProvider.swift`.
+Now we can send the buffers to the output stream when the `ExtensionProvider` is in a camera extension, and send them to the end-to-end app when we run it directly. We want to attempt to make the end-to-end app behave as similarly as possible to the CMIO Camera Extension output stream, so we can use it for as much video debugging as possible. If you now build and run the end to end app, you should see it break on our last breakpoint we sent in `ExtensionProvider.swift`.
 
 Remove the breakpoint and continue. You should see our image in the app, flipped on its vertical axis just like in our video feed. Now we can debug the extension code as if it were an app.
 
