@@ -112,7 +112,7 @@ ___
 ___
 If any of these aren't right, review and see if you set things up correctly. You can compare to my [completed version](https://github.com/Halle/OffcutsCam).
 
-If this looks good, you can build and run. You should see a "Hello, world!" app. You can quit it. Go to `/Applications/OffcutsCam.app` and right-click and choose `Show Package Contents` the package and verify that you can see the extension inside of it like in this screenshot.
+If this looks good, you can build and run. You should see a "Hello, world!" app. You can quit it. Go to `Xcode->Product->Show Build Folder in Finder` and find your product `OffcutsCam.app`, and right-click and choose `Show Package Contents` the package and verify that you can see the extension inside of it like in this screenshot.
 ___
 ![](/images/cmio/Package.png)
 ___
