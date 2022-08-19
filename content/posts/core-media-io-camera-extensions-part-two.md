@@ -67,7 +67,7 @@ Next, add this import to `ContentView.swift`:
 
 `import OSLog`
 
-Right under it, we'll create a unified logging logger using the [unified logging API](https://developer.apple.com/documentation/os/logging) (please also check out [this indispensable post about making the system log work for you](https://developer.apple.com/forums/thread/705868)). In a project that was less of a demonstration, there are several ways we could do this that would be more design-correct. But I'd like to show this with minimal indirection, so we'll create a global here in the file where we're doing the work:
+Right under it, we'll create a [unified logging API logger](https://developer.apple.com/documentation/os/logging) (please also check out [this indispensable post about making the system log work for you](https://developer.apple.com/forums/thread/705868)). In a project that was less of a demonstration, there are several ways we could do this that would be more design-correct. But I'd like to show this with minimal indirection, so we'll create a global here in the file where we're doing the work:
 
 `let logger = Logger(subsystem: "com.politepix.offcutscam", category: "Application")`
 
