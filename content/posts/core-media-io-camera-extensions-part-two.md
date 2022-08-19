@@ -365,7 +365,7 @@ ___
 ![](/images/cmio/lldb.png)
 ___
 
-You will be asked to authenticate with an admin account and then Xcode will attach to your extension. Since you have its project open, and you built it with debug symbols, we can put breakpoints into `ExtensionProvider.swift` and inspect our objects directly in Xcode. Let's do perhaps the single most important Xcode lldb trick we can learn for video extension debugging, and quicklook the contents of a pixelbuffer. Place a breakpoint right before this line in `func startStreaming()`:
+You will be asked to authenticate with an admin account and then Xcode will attach to your extension. Since you have its project open, and you built it with debug symbols, we can put breakpoints into `ExtensionProvider.swift` and inspect our variables directly in Xcode. Let's do perhaps the single most important Xcode lldb trick we can learn for video extension debugging, and quicklook the contents of a pixelbuffer. Place a breakpoint right before this line in `func startStreaming()`:
 
 `_streamingCounter += 1`
 
