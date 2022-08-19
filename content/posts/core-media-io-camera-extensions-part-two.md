@@ -237,7 +237,7 @@ ___
 Build and run the app, and then very that these images will be available to your extension bundle by opening `Terminal.app` and running 
 `open /Applications/OffcutsCam.app/Contents/Library/SystemExtensions/com.politepix.OffcutsCam.Extension.systemextension/Contents/Resources` so you can see if they're both in there. If not, try building the extension directly in Xcode and then going back to building and running the application (this shouldn't be necessary, but it helped with this issue once in my experience, so give it a try). If you still don't have the images at the necessary location, troubleshoot whether you really added them to the extension target. Once you see them, proceed.
 
-OK, let's open `ExtensionProvider.swift`. First, change the framerate at the top of the file to 1. We are going to show a static image so we don't need to burn fuel by refreshing it 60x/sec:
+OK, let's open `ExtensionProvider.swift`. First, change the framerate at the top of the file to 1. We are going to show a static image, so we don't need to burn fuel by refreshing it 60x/sec:
 
 ```
 let kFrameRate: Int = 1
@@ -386,7 +386,7 @@ You will be asked to authenticate with an admin account and then Xcode will atta
 
 `_streamingCounter += 1`
 
-Now go to FaceTime, select a different camera than ours, and then reselect our camera. It should break at the breakpoint and show this in Xcode. 
+Now go to FaceTime, select a different camera than ours, and then reselect our camera. In Xcode, your project should break at the breakpoint you set.
 
 Check it out, we're live-debugging our installed extension. Let's open the debugger pane at the bottom of Xcode. Expand the left side if it isn't already expanded. This is the variable viewer. You should see the object `techDiffBuffer`. Select it by clicking on it.
 ___
