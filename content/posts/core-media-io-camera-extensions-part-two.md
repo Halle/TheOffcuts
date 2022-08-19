@@ -490,7 +490,7 @@ class EndToEndStreamProvider: NSObject, ObservableObject,
 
 ```
 
-Change anything that loads ContentView() to load it like this:
+Change anything that loads `ContentView()` to load it like this:
 
 ```
 ContentView(endToEndStreamProvider: EndToEndStreamProvider())
