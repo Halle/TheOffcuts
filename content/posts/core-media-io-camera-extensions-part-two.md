@@ -16,7 +16,7 @@ date: 2022-08-18T12:00:00+01:00
 
 Welcome to the second in a series of three posts about the **[Core Media IO Camera Extension](https://developer.apple.com/documentation/coremediaio/creating_a_camera_extension_with_core_media_i_o)**. 
 
-Please take a look at [the previous post, "The Basics"](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/) to learn what the series is about, its prerequisites, etc, and to understand the project so far.
+Please take a look at [the previous post, "**The Basics**"](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/), to learn what the series is about, its prerequisites, etc, and to understand the project so far.
 
 The second post, this one, is about **creating a useful software CMIO Camera Extension with communication between a configuration app and an extension, *and* painless extension debugging**,
 
@@ -48,7 +48,7 @@ Anyway. Let us not chase waterfalls; we'll only use `CFNotification` for now. I 
 
 Let's add some notification code that lets us communicate from the container app to the extension without ambiguity.
 
-First, let's add a file we will share with both targets. `Xcode->File->New-File-Swift File` and call it `NotificationName.swift`.
+First, let's add a file we will share with both targets. `Xcode->File->New-File->Swift File` and call it `NotificationName.swift`.
 ___
 ![](/images/cmio/NotificationName.jpg)
 ___
@@ -86,7 +86,7 @@ func postNotification(named notificationName: NotificationName) {
     )
 }
 ```
-By using our Logger instead of `print(...)`, we can see our logging in `Console.app`, which is going to be one of the three legs of our extension debugging strategy. We're using `Logger.debug` as our logging level because we don't want this logging to persist in the OS. Other options would be `info` (doesn't persist unless implicated in an error) or `error` (persists), and more.
+By using our Logger instead of `print(...)`, we can see our logging in **Console.app**, which is going to be one of the three legs of our extension debugging strategy. We're using `Logger.debug` as our logging level because we don't want this logging to persist in the OS. Other options would be `info` (doesn't persist unless implicated in an error) or `error` (persists), and more.
 
 Add this UI to the top of ContentView's view:
 
@@ -110,7 +110,7 @@ First, add a logger to the top of the file:
 
 `let logger = Logger(subsystem: "com.politepix.offcutscam", category: "Extension")`
 
-You can see that we have a different category for the extension, which will let us view both app and extension logging under the shared subsystem in `Console.app`, but view either exclusively using the category.
+You can see that we have a different category for the extension, which will let us view both app and extension logging under the shared subsystem in **Console.app**, but view either exclusively using the category.
 
 Add the following to your extension's `ExtensionProviderSource` in `ExtensionProvider.swift`:
 
@@ -172,13 +172,13 @@ This shows that we are going to listen for a notification that the app is sendin
 
 If we could see extension logging in Xcode, we would run our extension and press the container app button to see if communication is working, but we can't log the extension output to Xcode.
 
-It is necessary to install and activate the extension and open `Console.app`, and that will allow us to view all of our unified logging output that we wrote with our `logger` in the console.
+It is necessary to install and activate the extension and open **Console.app**, and that will allow us to view all of our unified logging output that we wrote with our `logger` in the console.
 
 I mentioned at the end of part 1 that we were going to get around the necessity to constantly reboot in order to debug, and we are, but to get there we're going to need to do a reboot, so we can first see what it is like to debug a camera extension the hard way.
 
 ## systemextensionsctl
 
-There is a handy CLI tool called `systemextensionsctl` and let's open `Terminal.app` and use it to check the current status of our extension. Run `systemextensionsctl list` to see the current state of the user-installed system extensions on your system. If you installed your extension and never uninstalled it, it will look something like this:
+There is a handy CLI tool called `systemextensionsctl` and let's open **Terminal.app** and use it to check the current status of our extension. Run `systemextensionsctl list` to see the current state of the user-installed system extensions on your system. If you installed your extension and never uninstalled it, it will look something like this:
 
 
 `*	*	Z39BRGKSRW	com.politepix.OffcutsCam.Extension (1.0/1)	Extension	[activated enabled]`
@@ -193,17 +193,17 @@ What it is telling you is that the extension isn't going to be fully uninstalled
 
 ## Viewing our logging in Console.app
 
-After you have successfully installed it, open `Console.app` and click "Start Streaming". You will see a **lot** of messages. In the search filter field in the upper right, enter `com.politepix.offcutscam` (but with your organization ID) so we can look for messages about or from our extension and app. There is a dropdown in the filter field next to your search token, and let's set it to `subsystem`, so we are only receiving output from our logger. 
+After you have successfully installed it, open **Console.app** and click "Start Streaming". You will see a **lot** of messages. In the search filter field in the upper right, enter `com.politepix.offcutscam` (but with your organization ID) so we can look for messages about or from our extension and app. There is a dropdown in the filter field next to your search token, and let's set it to `subsystem`, so we are only receiving output from our logger. 
 
 Now that we have quieted things down, we will go to `Console.app->Action->View Debug Messages` and check that so we can see our debug-level logging. You will probably want to turn this off after you're done debugging your extension because it's intolerably noisy if you ever need to look at OS events.
 
 Next, we want to actually load our extension, so let's open FaceTime and select our camera. The extension process isn't going to load unless an app uses the camera.
 
-Now that the camera extension is loaded, if we run the app and click the `Change Image` button, we will see our debug logging in `Console.app`. Since we're filtering there on our shared subsystem, we see logging from the app and the extension. If we add a filter in the search field of `Console.app` for `Extension` and set its type to `Category` we will only see the extension output. If we used the category `Application` instead, we would only see the app output.
+Now that the camera extension is loaded, if we run the app and click the `Change Image` button, we will see our debug logging in **Console.app**. Since we're filtering there on our shared subsystem, we see logging from the app and the extension. If we add a filter in the search field of **Console.app** for `Extension` and set its type to `Category` we will only see the extension output. If we used the category `Application` instead, we would only see the app output.
 
-**Tip**: when you are debugging an extension by observing `Console.app` logging, you should occasionally filter by the extension name as a regular "contains" string and not only by the subsystem you set to catch your own debug output. Why? Because another app or process might be the one complaining about your extension process, and that may be where you get the info you need to solve a bug.
+**Tip**: when you are debugging an extension by observing **Console.app** logging, you should occasionally filter by the extension name as a regular "contains" string and not only by the subsystem you set to catch your own debug output. Why? Because another app or process might be the one complaining about your extension process, and that may be where you get the info you need to solve a bug.
 
-So, we can now do part of our debugging with `Console.app`, but we don't yet know how to avoid reboots to examine code. To start dismantling the reboot industrial complex, the next tool in our toolbox will be `lldb`.
+So, we can now do part of our debugging with **Console.app**, but we don't yet know how to avoid reboots to examine code. To start dismantling the reboot industrial complex, the next tool in our toolbox will be `lldb`.
 
 ## Doing something useful
 
@@ -217,7 +217,7 @@ Download [this](https://theoffcuts.org/images/cmio/Clean.jpg) image and [this](h
 ___
 ![](/images/cmio/images.png)
 ___
-Build and run the app, and then verify that these images will be available to your extension bundle by opening `Terminal.app` and running 
+Build and run the app, and then verify that these images will be available to your extension bundle by opening **Terminal.app** and running 
 `open /Applications/OffcutsCam.app/Contents/Library/SystemExtensions/com.politepix.OffcutsCam.Extension.systemextension/Contents/Resources` so you can see if they're both in there. If not, try building the extension directly in Xcode and then going back to building and running the application (this shouldn't be necessary, but it helped with this issue once in my experience, so give it a try). If you still don't have the images at the necessary location, troubleshoot whether you really added them to the extension target. Once you see them, proceed.
 
 OK, let's open `ExtensionProvider.swift`. First, change the framerate at the top of the file to 1. We are going to show a static image, so we don't need to burn fuel by refreshing it 60x/sec:
@@ -359,7 +359,7 @@ Build and run, and use the application to uninstall your old extension, reboot, 
 
 When you run this version of the extension, by selecting it in FaceTime, you will see that it almost works, but that it doesn't quite. The technical difficulties image is shown in the camera, but in mirror image.
 
-We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the Xcode version of the lldb debugger to our extension while it is running in FaceTime and do some diagnosis. While FaceTime is using the extension, get its `pid` by opening `Terminal.app` and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Open Xcode and choose `Debug->Attach to Process by PID or Name…` and enter that PID, and choose "root" as the account to debug with. 
+We could make ourselves miserable by futzing with our extension code blindly and then rebooting endlessly to see the results, but we won't. Instead, let's attach the Xcode version of the lldb debugger to our extension while it is running in FaceTime and do some diagnosis. While FaceTime is using the extension, get its `pid` by opening **Terminal.app** and running `pgrep com.politepix.OffcutsCam.Extension` (replacing my organization ID with yours). Open Xcode and choose `Debug->Attach to Process by PID or Name…` and enter that PID, and choose "root" as the account to debug with. 
 
 ___
 ![](/images/cmio/lldb.png)
@@ -375,7 +375,7 @@ Check it out, we're live-debugging our installed extension. Let's open the debug
 ___
 ![](/images/cmio/lldb2.png)
 ___
-Now, with it selected in the variable viewer, press the space key. Whoa, you should see a whole image in that quicklook window. Xcode can show you the image contained in a pixel buffer! You can even choose to open it as an image in `Preview.app`. Once you're writing effects, this is going to come in handy.
+Now, with it selected in the variable viewer, press the space key. Whoa, you should see a whole image in that quicklook window. Xcode can show you the image contained in a pixel buffer! You can even choose to open it as an image in **Preview.app**. Once you're writing effects, this is going to come in handy.
 
 Hmm, the contents of the buffer look correct. This means that the camera output stream is being displayed in a different coordinate space after it leaves the extension.
 
@@ -543,7 +543,7 @@ context.concatenate(transform)
 context.draw(image, in: region)
 ```
 
-Now when I run the end-to-end testing app, I see my image oriented correctly. You can build and run a new `OffcutsCam.app` and install the fixed extension now that image debugging is done for now, and you should see it working.
+Now when I run the end-to-end testing app, I see my image oriented correctly. You can build and run a new **OffcutsCam.app** and install the fixed extension now that image debugging is done for now, and you should see it working.
 
 The end-to-end app tool has some maintenance attached to it. The goal is that it should do very little, but what it does should approximate what the system does with the camera's output stream, with the same requirements and behaviors. That's why it creates its image from an `IOSurface` and not from the `CVPixelBuffer`, for instance, because if the `CVPixelBuffer` was lacking an `IOSurface`, and that is possible in a valid `CVPixelBuffer`, we could successfully make an image from it in our end-to-end testing app, but we would not get an image in FaceTime when using our camera, because the camera system passes `IOSurface` for efficiency.
 
@@ -588,11 +588,11 @@ guard let bundleURL = Bundle.main.url(forResource: Filename,
 }
 ```
 
-Now, when we run the end-to-end testing app and run `OffcutsCam.app`, clicking "Change Image" shows us a change of image. We can toggle between a dirty and a clean version of the technical difficulties placard.
+Now, when we run the end-to-end testing app and run **OffcutsCam.app**, clicking "Change Image" shows us a change of image. We can toggle between a dirty and a clean version of the technical difficulties placard.
 
 ## Reboot and install the extension once it is debugged
 
-Since we seem to have a working implementation, let's build and run a new `OffcutsCam.app` (not the end-to-end testing app), uninstall the old extension, reboot, and install a new extension.
+Since we seem to have a working implementation, let's build and run a new **OffcutsCam.app** (not the end-to-end testing app), uninstall the old extension, reboot, and install a new extension.
 
 It works! Well, mine works; yours might need some more debugging. Good thing you know how to use unified logging, Xcode lldb, and an end-to-end testing app to debug your CMIO Camera Extension with (almost) no reboots. You can take a look at my working version on [Github](https://github.com/Halle/TechnicalDifficulties), remembering to change all incidences of team ID and organization ID from mine to yours.
 

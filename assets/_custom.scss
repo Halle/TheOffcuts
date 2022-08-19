@@ -1,3 +1,6 @@
+span.Bold { font-weight: bold }
+strong, span.Bold { font-family: 'FiraSans' }
+
 .markdown h1, .markdown h2 {
 	line-height: 1.3em;
 }
