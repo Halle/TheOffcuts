@@ -206,7 +206,7 @@ If you haven't already done so, build and run `/Applications/OffcutsCam.app` and
 `		Z39BRGKSRW	com.politepix.OffcutsCam.Extension (1.0/1)	Extension	[terminated waiting to uninstall on reboot]`
 
 
-What it is telling you is that the extension isn't really going to be deactivated, and can't really be overwritten, until after a reboot – there are no live replacements of an extension in a single user session. So reboot. After your system comes back up, build and run the container app in Xcode, and install your new extension version in the container app. 
+What it is telling you is that the extension isn't going to be fully uninstalled until after a reboot – there are no live replacements of an extension process in a single user session. So reboot. After your system comes back up, build and run the container app in Xcode, and install your new extension version in the container app. 
 
 ## Viewing our logging in Console.app
 
