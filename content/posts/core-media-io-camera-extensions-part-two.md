@@ -210,7 +210,7 @@ What it is telling you is that the extension isn't going to be fully uninstalled
 
 ## Viewing our logging in Console.app
 
-After you have successfully installed it, open `Console.app` and click "Start Streaming". You will see a **lot** of messages. In the search filter field in the upper right, enter `com.politepix.offcutscam` (but with your organization ID) so we can look for messages about or from our extension and app. There is a dropdown next to the search, and let's set it to `subsystem`, so we are only receiving output from our logger. 
+After you have successfully installed it, open `Console.app` and click "Start Streaming". You will see a **lot** of messages. In the search filter field in the upper right, enter `com.politepix.offcutscam` (but with your organization ID) so we can look for messages about or from our extension and app. There is a dropdown in the filter field next to your search token, and let's set it to `subsystem`, so we are only receiving output from our logger. 
 
 Now that we have quieted things down, we will go to `Console.app->Action->View Debug Messages` and check that so we can see our debug-level logging. You will probably want to turn this off after you're done debugging your extension because it's intolerably noisy if you ever need to look at OS events.
 
