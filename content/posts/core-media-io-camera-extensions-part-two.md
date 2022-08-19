@@ -49,9 +49,9 @@ Anyway. Let us not chase waterfalls; we'll only use `CFNotification` for now. I 
 Let's add some notification code that lets us communicate from the container app to the extension without ambiguity.
 
 First, let's add a file we will share with both targets. `Xcode->File->New-File-Swift File` and call it `NotificationName.swift`.
-
+___
 ![](/images/cmio/NotificationName.jpg)
-
+___
 When creating it, make sure to add it to both app and extension targets. This should be its contents (but with your team ID and organization ID):
 
 ```
@@ -231,9 +231,9 @@ You know, [this guy](https://www.youtube.com/watch?v=Mh4f9AYRCZY) trying in vain
 When something went wrong in the news studio, they could always cut to the "Technical Difficulties" placard in the most dire cases. We as individuals deserve at least this much dignity. We will make a "We've Having Technical Difficulties" software camera so that when things get weird, you too can cut away.
 
 Download [this](https://theoffcuts.org/images/cmio/Clean.jpg) image and [this](https://theoffcuts.org/images/cmio/Dirty.jpg) image, and add them to your extension target. 
-
+___
 ![](/images/cmio/images.png)
-
+___
 Build and run the app, and then very that these images will be available to your extension bundle by opening `Terminal.app` and running 
 `open /Applications/OffcutsCam.app/Contents/Library/SystemExtensions/com.politepix.OffcutsCam.Extension.systemextension/Contents/Resources` so you can see if they're both in there. If not, try building the extension directly in Xcode and then going back to building and running the application (this shouldn't be necessary, but it helped with this issue once in my experience, so give it a try). If you still don't have the images at the necessary location, troubleshoot whether you really added them to the extension target. Once you see them, proceed.
 
@@ -389,9 +389,9 @@ You will be asked to authenticate with an admin account and then Xcode will atta
 Now go to FaceTime, select a different camera than ours, and then reselect our camera. It should break at the breakpoint and show this in Xcode. 
 
 Check it out, we're live-debugging our installed extension. Let's open the debugger pane at the bottom of Xcode. Expand the left side if it isn't already expanded. This is the variable viewer. You should see the object `techDiffBuffer`. Select it by clicking on it.
-
+___
 ![](/images/cmio/lldb2.png)
-
+___
 Now, with it selected in the variable viewer, press the space key. Whoa, you should see a whole image in that quicklook window. Xcode can show you the image contained in a pixel buffer! You can even choose to open it as an image in `Preview.app`. Once you're writing effects, this is going to come in handy.
 
 Hmm, the contents of the buffer look correct. This means that the camera output stream is being displayed in a different coordinate space after it leaves the extension.
