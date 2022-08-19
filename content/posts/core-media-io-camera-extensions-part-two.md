@@ -42,7 +42,7 @@ The docs indicate that using `UserDefaults` invoked with `suiteNamed:` in a shar
 
 **Then** I thought I'd show you some simple XPC instead, but it currently raises the same "is this supposed to be like this?" questions as `UserDefaults`. Well, this is a new way of distributing these extensions, so we can expect some bumps and changes. 
 
-Anyway. Let us not chase waterfalls; we'll only use `CFNotification` for now. I think I'll come back and revise this to include sharing data once Ventura has settled down into later betas.
+Anyway. Let us not chase waterfalls; let us stick to the CFNotifications we are used to. I think I'll come back and revise this to include sharing data once Ventura has settled down into later betas.
 
 ## Notifications (and Logger)
 
