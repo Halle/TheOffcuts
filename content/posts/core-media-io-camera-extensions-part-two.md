@@ -191,7 +191,7 @@ If we could see extension logging in Xcode, we would run our extension and press
 
 It is necessary to install and activate the extension and open `Console.app`, and that will allow us to view all of our unified logging output that we wrote with our `logger` in the console.
 
-I mentioned at the end of part 1 that we were going to get around the necessity to constantly reboot in order to debug, and we are, but to get there we're going to need to do a reboot, so we can see what it is like to debug a camera extension naively.
+I mentioned at the end of part 1 that we were going to get around the necessity to constantly reboot in order to debug, and we are, but to get there we're going to need to do a reboot, so we can first see what it is like to debug a camera extension the hard way.
 
 ## systemextensionsctl
 
