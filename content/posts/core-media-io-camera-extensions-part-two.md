@@ -543,7 +543,7 @@ context.concatenate(transform)
 context.draw(image, in: region)
 ```
 
-Now when I run the end-to-end testing app, I see my image oriented correctly. You can build and run a new **OffcutsCam.app** and install the fixed extension now that image debugging is done for now, and you should see it working.
+Now when I run the end-to-end testing app, I see my image oriented correctly. You can build and run a new **OffcutsCam.app** and install the fixed extension since image debugging is done for now, and you should see it working.
 
 The end-to-end app tool has some maintenance attached to it. The goal is that it should do very little, but what it does should approximate what the system does with the camera's output stream, with the same requirements and behaviors. That's why it creates its image from an `IOSurface` and not from the `CVPixelBuffer`, for instance, because if the `CVPixelBuffer` was lacking an `IOSurface`, and that is possible in a valid `CVPixelBuffer`, we could successfully make an image from it in our end-to-end testing app, but we would not get an image in **FaceTime** when using our camera, because the camera system passes `IOSurface` for efficiency.
 
