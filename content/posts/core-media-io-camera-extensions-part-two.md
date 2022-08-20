@@ -610,4 +610,4 @@ He was a stoic, so what he meant was that we can't control external things, only
 
 I am **not** a stoic, so my understanding is: we first react to injury without any compassion, and later we are able to demonstrate compassion for another. The next stage would be to include ourselves and another in the same compassion, where it isn't a demonstration.
 
-Someone observing might say "First you think those perspectives are opposite, then you think they're just orthogonal, then you notice that they overlap..."
+Someone else might say "First you think those perspectives are opposite, then you think they're just orthogonal, then you notice that they overlap..."
