@@ -31,7 +31,7 @@ Each will build on the previous post. SwiftUI will be the only interface framewo
 
 ### Prerequisites
 
-Much of this will work in macOS 12.3 and later with Xcode 13, so my [sample app for part 1](https://github.com/Halle/OffcutsCam) will build, run and work with them. But, the end result will explore beta APIs, so this series as a whole has been written for the betas. To run all of the code in all three parts:
+Much of this will work in macOS 12.3 and later with Xcode 13, so my [sample apps for part 1](https://github.com/Halle/OffcutsCam) and [2](https://github.com/Halle/TechnicalDifficulties) will build, run and work with them. But, the end result will explore beta APIs, so this series as a whole has been written for the betas. To run all of the code in all three parts:
 
 * Ventura beta 5 or later
 * Xcode 14 beta 5 or later
@@ -76,7 +76,7 @@ ___
 ___
 ![](/images/cmio/6.png)
 ___
-7. Now go back to your **app** target, **Signing & Capabilities**, and add the capability "App Group". In the new configuration area this adds, click "+" and add an app group with the identical app group name as the extension `($(TeamIdentifierPrefix)com.politepix.OffcutsCam` (but with your organization identifier instead of mine). Both of these targets are allowed to communicate with each other via this **App Group**, and are now able to, and we will make use of this in the following two posts.
+7. Now go back to your **app** target, **Signing & Capabilities**, and add the capability "App Group". In the new configuration area this adds, click "+" and add an app group with the identical app group name as the extension `($(TeamIdentifierPrefix)com.politepix.OffcutsCam` (but with your organization identifier instead of mine).
 ___
 ![](/images/cmio/7.png)
 ___
@@ -233,7 +233,7 @@ extension SystemExtensionRequestManager: OSSystemExtensionRequestDelegate {
 
 }
 ```
-in your `ContentView`, add this `var`:
+in your `ContentView`, add this variable:
 `
 @ObservedObject var systemExtensionRequestManager: SystemExtensionRequestManager`
 
@@ -291,11 +291,9 @@ ___
 ![](/images/cmio/notification.png)
 ___
 
-Authenticate to install. Now the extension should be installed in your system. You can verify this by opening FaceTime. Under the `Video` menu you should see OffcutsCam as an offered camera. If you select it, you should see a black screen with a white line moving up and down it. Congrats! Your first CMIO Camera Extension.
+Authenticate to install. Now the extension should be installed in your system. You can verify this by opening FaceTime. Under the **Video** menu you should see **OffcutsCam** as an available camera. If you select it, you should see a black screen with a white line moving up and down it. Congrats! Your first CMIO Camera Extension.
 
 We have taken pains to get codesigned extension installation working from the start so that we don't need to debug this area of the project while debugging other complexities later on such as interprocess communication and realtime video processing.
-
-**Note**: if you start getting a codesigning error that the extension doesn't match the app when building or running, or similar intermittent complaining at build that doesn't seem 100% believable, this can be fixed by navigating to the app's `Build Phases`, and under your "Copy Files" phase that moves the executable to `/Applications`, checking "Copy only when installing", building and running, and then unchecking it again and building and running. Sometimes this ca be resolved simply by first building without running, then doing a build and run. This fragility is not great, but I think it's preferable to building and running in `DerivedData` where we can't install from, or turning off SIP in order to disable the install location/codesigning requirements.
 
 And that brings us to the conclusion of part one of this series: we have created a **Container App** which can install and uninstall a working **Core Media IO Camera System Extension** that can be selected in FaceTime, and we have removed one big pain point already, which is testing this behavior with full codesigning while still being able to do a normal build and run.
 
