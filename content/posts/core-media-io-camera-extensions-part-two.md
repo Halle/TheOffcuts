@@ -602,4 +602,12 @@ Now that we know how to make a software camera extension with communication from
 
 ✂ - - Non-code thoughts, please stop reading here for the code-only experience - - ✂
 
-Those were way too many words already! Extro will pick up again next week.
+More video debugging, more Epictetus. An excerpt:
+
+"It is the part of an uneducated person to blame others where he himself fares ill; to blame himself is the part of one whose education has begun; to blame neither another nor his own self is the part of one whose education is already complete."
+
+He was a stoic, so what he meant was that we can't control external things, only what we make of them (and education is learning this fact). Meaning, at the stage in which we have no control over what we make of the impressions in our brains, and too much belief in the idea that people are directly in control of external events, we blame the person outside of ourself closest to a negative outcome. With a little control over ourselves, we blame ourselves for not having enough control over ourselves. When we truly understand that the only influence we can claim to reliably have over reality is the reality in our interpretation of our perceptions, we blame no one.
+
+I am not a stoic, so for me, this means: we first react to injury without any compassion, and later we are able to demonstrate compassion for another. The next stage would be to include ourselves and another in the same compassion, where it isn't a demonstration.
+
+Someone observing might say "First you think those perspectives are opposite, then you think they're just orthogonal, then you notice that they overlap."
