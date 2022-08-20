@@ -184,7 +184,7 @@ There is a handy CLI tool called `systemextensionsctl` and let's open **Terminal
 `*	*	Z39BRGKSRW	com.politepix.OffcutsCam.Extension (1.0/1)	Extension	[activated enabled]`
 
 
-If you haven't already done so, build and run `/Applications/OffcutsCam.app` and press the **`uninstall button`** to uninstall your previous version of the extension. Now `systemextensionsctl list` will look like this:
+If you haven't already done so, build and run `/Applications/OffcutsCam.app` and press the **`uninstall`** button to uninstall your previous version of the extension. Now `systemextensionsctl list` will look like this:
 
 `		Z39BRGKSRW	com.politepix.OffcutsCam.Extension (1.0/1)	Extension	[terminated waiting to uninstall on reboot]`
 
