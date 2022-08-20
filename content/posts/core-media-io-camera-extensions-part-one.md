@@ -234,8 +234,9 @@ extension SystemExtensionRequestManager: OSSystemExtensionRequestDelegate {
 }
 ```
 in your `ContentView`, add this variable:
-`
-@ObservedObject var systemExtensionRequestManager: SystemExtensionRequestManager`
+```
+@ObservedObject var systemExtensionRequestManager: SystemExtensionRequestManager
+```
 
 and this view content:
 
@@ -260,9 +261,9 @@ ContentView(systemExtensionRequestManager: SystemExtensionRequestManager(logText
 .frame(minWidth: 300, minHeight: 180)
 ```                                 
  
-Now build and run the app again. You should see a UI with an `Install` and an `Uninstall` button. 
+Now build and run the app again. You should see a UI with an **`Install`** and an **`Uninstall`** button. 
 
-Click "Install" and see that you get an informative error that the container app isn't in `/Applications`. System extensions have to be installed from a container app in `/Applications` to be acceptable to the system.
+Click **`Install`** and see that you get an informative error that the container app isn't in `/Applications`. System extensions have to be installed from a container app in `/Applications` to be acceptable to the system.
 
 Let's make things easy on ourselves and set things up so the builds are moved to `/Applications` so we can install the codesigned extension like an enduser would, but without too much bother. 
 
@@ -277,7 +278,7 @@ Next, edit the app scheme a second time, and this time choose `Run`, and change 
 ___
 ![](/images/cmio/scheme2.png)
 ___
-With these steps complete, if you build and run `OffcutsCam.app` (we never need to run the extension directly), you should be able to click "Install" in the app UI and do an installation of your extension. The app should log that the extension needs user approval and macOS should show an alert saying "System Extension Blocked". That's great! That's how it's supposed to work.
+With these steps complete, if you build and run `OffcutsCam.app` (we never need to run the extension directly), you should be able to click **`Install`** in the app UI and do an installation of your extension. The app should log that the extension needs user approval and macOS should show an alert saying "System Extension Blocked". That's great! That's how it's supposed to work.
 
 ___
 ![](/images/cmio/approval.png)
