@@ -9,7 +9,7 @@ date: 2022-08-18T12:00:00+01:00
 ---
 # Getting To Grips With The Core Media IO Camera Extension, a 3 part series.
 
-## Part 2 of 3: Creating an useful software Core Media Camera Extension, interprocess communication, and painless debugging.
+## Part 2 of 3: Creating a useful software Core Media Camera Extension, interprocess communication, and painless debugging.
 {{< datecodeanchorslug date="August 18th, 2022" >}}
 
 #### [View project on Github](https://github.com/Halle/TechnicalDifficulties){#thecode}
@@ -34,7 +34,7 @@ We are going to examine three more fairly buttoned-down topics today that will l
 
 As we've seen, Core Media IO Camera Extensions use a container app to install an extension. What if you need to tell the extension to change something? This idea of app-to-extension communication is mentioned in the [CMIO Extension WWDC22 video](https://developer.apple.com/documentation/coremediaio/creating_a_camera_extension_with_core_media_i_o).
 
-The container app can become a configuration app by using some form of interprocess communication. The app is a process and the extension is a separate process, so their code doesn't speak to each other directly, and in fact, there is no reason to assume they will both be an active process simultaneously – the user can effectively choose to load one process, the other, both, or none. The WWDC video states that the extension is run by a different user role account than the user's account, for security. They are genuinely separate.
+The container app can become a configuration app by using some form of interprocess communication. The app is a process and the extension is a separate process, so their code doesn't speak to each other directly, and in fact, there is no reason to assume they will both be an active process simultaneously — the user can effectively choose to load one process, the other, both, or none. The WWDC video states that the extension is run by a different user role account than the user's account, for security. They are genuinely separate.
 
 What I really wanted to show you was how to share an App Group `UserDefaults` between the container app and the extension, and then use `CFNotification` to message between them. This covers many cases and it also encourages an uncoupled communication design.
 
@@ -606,7 +606,7 @@ More video debugging, more Epictetus. Excerpt:
 
 "It is the part of an uneducated person to blame others where he himself fares ill; to blame himself is the part of one whose education has begun; to blame neither another nor his own self is the part of one whose education is already complete."
 
-He was a stoic, so what he probably meant was that we can't control external things, only what we make of them (and education is learning this fact). Meaning, at the stage in which we have no control over what we make of the impressions in our brains, and too much belief in the idea that people are directly in control of external events, we blame the person outside of ourself closest to a negative outcome. With a little control over ourselves, we blame ourselves for not having enough control over ourselves. When we truly understand that the only influence we can claim to reliably have over reality is the reality in our interpretation of our perceptions, we blame no one.
+He was a stoic, so what he probably meant was that we can't control external things, only what we make of them (and education is learning this fact). Meaning, at the stage in which we have no control over what we make of the impressions in our brains, and too much belief in the idea that people are directly in control of external events, we blame the person outside of ourselves closest to a negative outcome. With a little control over ourselves, we blame ourselves for not having enough control over ourselves. When we truly understand that the only influence we can claim to reliably have over reality is the reality in our interpretation of our perceptions, we blame no one.
 
 I am **not** a stoic, so my understanding is: we first react to injury without any compassion, and later we are able to demonstrate compassion for another. The next stage would be to include ourselves and another in the same compassion, where it isn't a demonstration.
 
