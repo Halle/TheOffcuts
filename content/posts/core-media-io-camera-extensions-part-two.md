@@ -608,6 +608,6 @@ More video debugging, more Epictetus. Excerpt:
 
 He was a stoic, so what he meant was that we can't control external things, only what we make of them (and education is learning this fact). Meaning, at the stage in which we have no control over what we make of the impressions in our brains, and too much belief in the idea that people are directly in control of external events, we blame the person outside of ourself closest to a negative outcome. With a little control over ourselves, we blame ourselves for not having enough control over ourselves. When we truly understand that the only influence we can claim to reliably have over reality is the reality in our interpretation of our perceptions, we blame no one.
 
-I am **not** a stoic, so for me, this means: we first react to injury without any compassion, and later we are able to demonstrate compassion for another. The next stage would be to include ourselves and another in the same compassion, where it isn't a demonstration.
+I am **not** a stoic, so my understanding is: we first react to injury without any compassion, and later we are able to demonstrate compassion for another. The next stage would be to include ourselves and another in the same compassion, where it isn't a demonstration.
 
-Someone observing might say "First you think those perspectives are opposite, then you think they're just orthogonal, then you notice that they overlap."
+Someone observing might say "First you think those perspectives are opposite, then you think they're just orthogonal, then you notice that they overlap..."
