@@ -598,7 +598,7 @@ It works! Well, mine works; yours might need some more debugging. Good thing you
 
 Now that we know how to make a software camera extension with communication from its container app, and we know how to debug, next up will be fun stuff, in **part 3 of my CMIO Camera Extension Series: building a creative camera with realtime effects processing using vImage Pixel Buffers, which can use the Continuity Camera Webcam**.
 
-# Extro
+## Extro
 
 ✂ - - Non-code thoughts, please stop reading here for the code-only experience - - ✂
 
