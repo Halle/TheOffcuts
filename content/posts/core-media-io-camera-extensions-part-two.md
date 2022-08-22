@@ -42,7 +42,7 @@ The docs indicate that using `UserDefaults` initialized with `UserDefaults(suite
 
 **Then** I thought I'd show you some simple XPC instead, but it currently raises the same "is this supposed to be like this?" questions as `UserDefaults`. Well, this is a new way of distributing these extensions, so we can expect some bumps and changes. 
 
-Anyway. Let us not chase waterfalls; let us stick to the CFNotifications we are used to. I think I'll come back and revise this to include sharing data once Ventura has settled down into later betas.
+Anyway. Let us not chase waterfalls; let us stick to the CFNotifications we are used to. I think I'll come back and revise this to include sharing data once Ventura has settled down into later betas. In part 3, we'll add an additional form of configuration via custom properties, but right now we'll keep it simple.
 
 ## Notifications (and Logger)
 
