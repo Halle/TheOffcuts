@@ -124,10 +124,33 @@ Ready?
 ### Source configuration
 
 1. Open `ExtensionProvider.swift` in the editor. This is where the input and output streams for the camera extension are managed. Apple is kind enough to provide a 100% known-working software camera in all fresh ExtensionProviders. I love that they do this.
-2. Do a search and replace in this file for every occurrence of `SampleCapture` and change it to `OffcutsCam`. Change the occurrence of `OffcutsCam (Swift)` to just `OffcutsCam`. This is how we are letting the system and the user know which camera this is. That's it for `ExtensionProvider.swift`, for this post (there will be much more `ExtensionProvider` in the following two posts). But for now, we want to get this default software camera extension fully working so we have a clean canvas to paint on.
+2. Do a search and replace in this file for every occurrence of `SampleCapture` and change it to `OffcutsCam`. Change the occurrence of `OffcutsCam (Swift)` to just `OffcutsCam`. This is how we are letting the system and the user know which camera this is. 
 
+### Inside the CMIOExtensionProvider
 
-2. Next, we will use Brad Ford's onscreen sample code for extension install and uninstall from [Create camera extensions with Core Media IO
+Let's talk briefly about what is going on inside of `ExtensionProvider.swift`. At the system level, this is the code that the OS extension machinery is going to engage with to provide a camera, starting with initializing its service in `Main.swift`:
+
+```
+let providerSource = ExtensionProviderSource(clientQueue: nil)
+CMIOExtensionProvider.startService(provider: providerSource.provider)
+```
+
+The `CMIOExtensionProvider` itself has three essential parts: 
+- The `CMIOExtensionProviderSource`, a protocol where the conforming class manages the capabilities and properties which affect the entire extension, and where client (video app) connections to the provider (camera extension) are managed, and which creates the object conforming to:
+- `CMIOExtensionDeviceSource`, a protocol where the conforming class manages the properties which affect the camera device specifically (meaning, the software device or the camera video feed which provides the basis for a creative camera), which configures the object conforming to:
+- the `CMIOExtensionStreamSource`, a protocol where the conforming class manages the stream mechanics of the camera, such as starting and stopping a stream, and manages the properties of the stream. 
+
+This is also the order the objects which conform to these protocols are initialized in, in an installed extension when there is a client that wants to use the camera. 
+
+When we replaced the default names with "OffcutsCam", we replaced the manufacturer name in `CMIOExtensionProviderSource` and initialized the `deviceSource` object with its device name, we set the device model name in its property of `CMIOExtensionDeviceSource`, and we set the name of the stream where our `CMIOExtensionDeviceSource` object creates its `CMIOExtensionStreamSource` object.
+
+Apple's default `ExtensionProvider` code demonstrates the responsibilities of each of these three parts, and the white line business code (`func startStreaming()`) can be found in the object conforming to `CMIOExtensionDeviceSource` before its final buffer is passed to the object conforming to `CMIOExtensionStreamSource` so it is seen in the client app using the camera extension. The business code that is eventually invoked by the `startStream()` function of `CMIOExtensionStreamSource` can get very different in practice, which we'll explore more in part 3 of this series.
+
+That's it for `ExtensionProvider.swift`, for this post (there will be much more `ExtensionProvider` in the following two posts). But for now, we want to get this default software camera extension fully working so we have a clean canvas to paint on.
+
+### Installation/deinstallation
+
+Next, we will use Brad Ford's onscreen sample code for extension install and uninstall from [Create camera extensions with Core Media IO
 ](https://developer.apple.com/videos/play/wwdc2022-10022), adding it to our container app. First, add `import SystemExtensions` at the top of the App's file `ContentView.swift`.
 
 Then, add the following class to `ContentView.swift` (my only addition here was more verbose error logging):
