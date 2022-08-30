@@ -231,7 +231,9 @@ Change the video dimensions from this:
 to this:
 `let dims = CMVideoDimensions(width: 1080, height: 720)`
 
-Next, replace the entirety of `func startStreaming()` with this:
+If we recall from the [explanation of ExtensionProvider.swift from part 1](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/#inside-the-cmioextensionprovider), the business code for creating the actual content that gets to the client app using the camera extension, in Apple's example code, is in `func startStreaming()` of `ExtensionDeviceSource`. This is where a pixel buffer is prepared to be handed off to the object conforming to `CMIOExtensionStreamSource` (which is the var `_streamSource` in `ExtensionDeviceSource`).
+
+Let's replace the entirety of `func startStreaming()` with this:
 
 ```
 func startStreaming() {
