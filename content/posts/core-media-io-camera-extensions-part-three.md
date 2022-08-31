@@ -45,12 +45,12 @@ This means that the code added to the end-to-end testing app *is* correct and sh
 
 Never mind the **[Technical Difficulties](https://www.github.com/Halle/TechnicalDifficulties)**, here's the **[Art Film](https://www.github.com/Halle/ArtFilm)**. Today we're going to do a bunch of different things: 
 
-- Shift from a software camera which shows imagery from inside the extension, to a creative camera which alters a live camera feed, 
-- Use that extremely fine new Continuity Camera Webcam as our video source,
-- Do some direct interaction from the configuration app to the camera extension using custom properties, and with all of that working,
-- Create realtime video effects for our creative camera using vImage Pixel Buffers, the new hotness for pixels + math from the Accelerate framework. 
+- Shift from a **software** camera which shows imagery from inside the extension, to a **creative** camera which alters a live camera feed, 
+- Use that extremely fine new **Continuity Camera Webcam** as our video source,
+- Do some direct interaction from the configuration app to the camera extension using **custom properties**, and with all of that working,
+- Create realtime video effects for our creative camera using **vImage Pixel Buffers**, the new hotness for pixels + math from the **Accelerate** framework. 
 
-We have a lot to get through and the changes will be extensive. Where possible, I am going to try to work with entire classes that we can take brief tours through as we add them, but there will be a few line-by-line changes as we implement them. I am going to leave our work just in the four major files we've been using so far so that this doesn't become a tutorial about adding files to the correct target and which file to switch to, but please feel absolutely free to put each class or struct in its own file afterwards when you want to experiment further; I definitely would separate this into more files in my own ongoing project.
+We have a lot to get through and the changes will be extensive. Where possible, I am going to try to work with entire classes, but there will be a few line-by-line changes as we implement them. I am going to leave our work just in the four major files we've been using so far so that this doesn't become a tutorial about adding files to the correct target and which file to switch to, but please feel absolutely free to put each class or struct in its own file afterwards when you want to experiment further; I definitely would separate this into more files in my own ongoing project.
 
 Throughout this process, you can always refer to the [completed sample app for this blog post at Github](http://github.com/Halle/ArtFilm).
 
@@ -64,7 +64,7 @@ Lastly, please entirely remove the jpeg files `Dirty.jpg` and `Clean.jpg`.
 
 ## Live camera streaming
 
-We will start by adding live camera streaming in our `ExtensionProvider` and making sure it works using the end-to-end testing app. We will do this using `AVCaptureSession`. Add the following imports to `Shared.swift`:
+We'll start by adding live camera streaming in our `ExtensionProvider` and making sure it works using the end-to-end testing app. We will do this using `AVCaptureSession`. Add the following imports to `Shared.swift`:
 
 ```
 import AppKit
@@ -200,7 +200,7 @@ This is in `Shared.swift` because we will be using slightly different implementa
 
 Let's talk briefly about what is going on in this class and what it will do for us in `ExtensionProvider` once we implement it there.
 
-1. In its `init()`, it finds out if it is supposed to capture the normal camera feed (e.g. the **Continuity Camera Webcam**, what we are going to use it for right now) or if we are going to use it to capture the feed from the installed extension (not for now).
+1. In its `init()`, it finds out if it is supposed to capture the normal camera feed (e.g. the **Continuity Camera Webcam**, what we are going to use it for right now) or if we are going to use it to capture the feed from the installed extension (later; not for now).
 2. It then does a very standard `AVCaptureSession` configuration, based on Apple's published best practices.
 3. It tries to obtain the camera we specified (e.g. **Continuity**) by checking for a camera which is continuity but isn't the desk view, and returns it, or falls back to the .userPreferredCamera if that doesn't work out.
 4. It sets up and adds the input and output of the session from this camera and if all is good, it commits the configuration and returns `true`, or logs errors and returns `false`. When we have set up the captureSession's final `sampleBufferDelegate` in whichever target is implementing this code, that target will receive the buffers from this configured `AVCaptureSession` and can do what it likes with them.
