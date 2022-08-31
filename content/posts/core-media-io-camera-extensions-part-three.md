@@ -23,13 +23,13 @@ The second was about extending that project by **[creating a useful software CMI
 
 This one is about bringing it all together by **building a creative camera with realtime effects processing using [vImage Pixel Buffers](https://developer.apple.com/documentation/accelerate/using_vimage_pixel_buffers_to_generate_video_effects), which can use the [Continuity Camera Webcam](https://developer.apple.com/videos/play/wwdc2022-10018)**.
 
-The previous two posts supported macOS versions starting with 12.3, but this one is about new APIs in beta, so you will need to have a Ventura beta installed with a matching Xcode beta. I wrote them mostly with Ventura beta 5, so it is probably a good idea to have beta 5 or later. 
+The previous two posts supported macOS versions starting with 12.3, but this one is about new APIs in beta, so you will need to have a **Ventura beta** installed with a matching **Xcode beta**. I wrote them mostly with **Ventura beta 5**, so it is probably a good idea to have beta 5 or later. 
 
 You'll also need a compatible beta OS on your phone in order to try the **Continuity Camera** features, but **Continuity Camera** isn't a requirement for working through the last part of this project – there will be fallback code to non-Continuity cameras, just like your extension should probably have, so no worries if you have an older phone, or a newer phone that you don't want to (or aren't allowed to) make a beta victim.
 
 Let's jump in. In [part 2](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/), we created a useful software camera and learned how to debug camera extensions without pain. You can [view or clone my version](https://github.com/Halle/TechnicalDifficulties) of it, keeping in mind that you will need to change all references to my organization ID (`com.politepix`) and my team ID to match your own, or it definitely won't work. Ideally you have your own that you made in the [previous post](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-two/) and it is still working, so we can continue with it here.
 
-We have already dealt with all of the gnarly process topics like how to set up these projects correctly, how to install and uninstall extensions successfully, how very basic interprocess communication works for extensions, how to debug live extensions, and how to strenuously avoid debugging live extensions. With all of that packed away successfully, we can zero in on the fun topics today – live video and realtime effects.
+We've dealt with all of the gnarly process topics like how to set up these projects correctly, how to install and uninstall extensions successfully, how very basic interprocess communication works for extensions, how to debug live extensions, and how to strenuously avoid debugging live extensions. With all of that packed away successfully, we can zero in on the fun topics today – live video and realtime effects.
 
 ## Loose ends
 
