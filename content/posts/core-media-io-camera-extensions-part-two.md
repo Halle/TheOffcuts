@@ -20,7 +20,7 @@ Please take a look at [the previous post, "**The Basics**"](https://theoffcuts.o
 
 The second post, this one, is about **creating a useful software CMIO Camera Extension with communication between a configuration app and an extension, *and* painless extension debugging**,
 
-The last will be about bringing it all together by **building a creative camera with realtime effects processing using [vImage Pixel Buffers](https://developer.apple.com/documentation/accelerate/using_vimage_pixel_buffers_to_generate_video_effects), which can use the Continuity Camera Webcam**.
+The last will be about [bringing it all together by **building a creative camera with realtime effects processing](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-three/) using [vImage Pixel Buffers](https://developer.apple.com/documentation/accelerate/using_vimage_pixel_buffers_to_generate_video_effects), which can use the Continuity Camera Webcam**.
 
 Let's jump in. In [part 1](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/), we created a known-working basic software CMIO Camera Extension camera with a container app which could install it, that we could use in **FaceTime** in order to watch a white stripe move up and down. You can [view or clone my version](https://github.com/Halle/OffcutsCam) of it, keeping in mind that you will need to change all references to my organization ID (`com.politepix`) and my team ID to match your own, or it definitely won't work. Ideally you have your own that you made in the [previous post](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/) and it is still working, so we can continue with it here.
 
@@ -598,7 +598,7 @@ Since we seem to have a working implementation, let's build and run a new **Offc
 
 It works! Well, mine works; yours might need some more debugging. Good thing you know how to use unified logging, Xcode lldb, and an end-to-end testing app to debug your CMIO Camera Extension with (almost) no reboots. You can take a look at my working version on [Github](https://github.com/Halle/TechnicalDifficulties), remembering to change all incidences of team ID and organization ID from mine to yours.
 
-Now that we know how to make a software camera extension with communication from its container app, and we know how to debug, next up will be fun stuff, in **part 3 of my CMIO Camera Extension Series: building a creative camera with realtime effects processing using vImage Pixel Buffers, which can use the Continuity Camera Webcam**.
+Now that we know how to make a software camera extension with communication from its container app, and we know how to debug, next up will be fun stuff, in **[part 3 of my CMIO Camera Extension Series: building a creative camera with realtime effects processing using vImage Pixel Buffers, which can use the Continuity Camera Webcam](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-three/)**.
 
 ## Extro
 
