@@ -519,7 +519,7 @@ First, it could be a good idea to watch [the part of the WWDC22 CMIO Camera Exte
 
 CMIO Camera Extension custom properties are a C API. If you've done lower-level audio or video code, you know that sometimes we need wrappers to deal nicely with highly-performant or highly-lightweight C and C++ system APIs; if this is your first time, welcome to Gnarlyville! The main goal is to give yourself some tools so that you debug in a single place through a single interface for these translations, and then, with any luck, never think about it again.
 
-First stop, still in Swift-land, add the following to `Shared.swift`, which are going to eventually control our special effects and give us a needed helpful extra String function:
+First stop, still in Swift-land, add the following to `Shared.swift`, which will eventually control our special effects and give us a needed helpful extra `String` function:
 
 ```
 // MARK: - MoodName
