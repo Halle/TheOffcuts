@@ -25,7 +25,7 @@ The first post, this one, is about **getting the basics working from the start**
 
 the second is about [**creating a useful software CMIO Camera Extension with communication between a configuration app and an extension *and* painless extension debugging**](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-two/),
 
-and the last is about bringing it all together by **building a creative camera with realtime effects processing using [vImage Pixel Buffers](https://developer.apple.com/documentation/accelerate/using_vimage_pixel_buffers_to_generate_video_effects), which can use the Continuity Camera Webcam**.
+and the last is about bringing it all together by **[building a creative camera with realtime effects processing](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-three/) using [vImage Pixel Buffers](https://developer.apple.com/documentation/accelerate/using_vimage_pixel_buffers_to_generate_video_effects), which can use the Continuity Camera Webcam**.
 
 Each will build on the previous post. SwiftUI will be the only interface framework used, and there will be no `NSViewRepresentable`, which is going to get spicy in the final entry when we're observing a camera feed in the configuration app.
 
