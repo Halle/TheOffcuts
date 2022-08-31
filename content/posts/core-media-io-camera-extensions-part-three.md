@@ -909,6 +909,8 @@ Oh, hello! We're finally ready for the effects. Please download the following 7 
 - [6.jpg](/images/cmio/moods/6.jpg)
 - [7.jpg](/images/cmio/moods/7.jpg)
 
+[(Image licensing)](https://raw.githubusercontent.com/Halle/ArtFilm/main/image_licenses.txt)
+
 Confirm that they have been successfully added by building the container app and listing the contents of its directory `OffcutsCam.app/Contents/Library/SystemExtensions/com.politepix.OffcutsCam.Extension.systemextension/Contents/Resources/`, (replacing my bundle ID with yours) which is where they should be.
  
 Add the following import and variable to the top of `ExtensionProvider`:
