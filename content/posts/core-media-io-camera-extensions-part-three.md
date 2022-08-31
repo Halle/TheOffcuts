@@ -1208,7 +1208,7 @@ Well, this is a very exciting class. Let me talk a little bit about the goals, a
 
 So, what I wanted to do was to create a very filmic, very color-pushed visual effect with noise, maybe a little like an [Anton Corbijn image in color](https://youtu.be/u1xrNaTO1bI?t=20), but much more unreal. I was thinking about how you could extract a histogram from a still image and apply it to another still in `Accelerate vImage`, and decided that I would like to combine this with the new `vImage Pixel Buffers` functions by taking several still images I thought were interesting, extracting their histograms at initialization, keeping the histograms in variables, and then applying them (specifying them) to our streaming video frames in realtime.
 
-I also need to apply some noise, both for stylistic reasons but also because it is the only way that these forced histograms can dither enough to draw gradients in shot backgrounds – otherwise they would just draw solid color blocks every time there is a "missing" color in the histogram that would otherwise be needed to bridge two colors in a gradient. To get my noise, I am referencing Apple's fantastic sample app [Using vImage Pixel Buffers to Generate Video Effects](https://developer.apple.com/documentation/accelerate/using_vimage_pixel_buffers_to_generate_video_effects), with a huge caveat, which is: I don't think we should ever be using a function like this to generate fresh noise at every buffer callback. I'm sure that Apple doesn't intend for developers to do that; they are just showing how performant it is, and how to implement it. But, if someone were to do that in a camera, it would use a lot of fuel doing something that human perception can't memorize in a detailed way over time, so we should be fooling those humans with something that just looks like fresh noise.
+I also need to apply some noise, both for stylistic reasons but also because it is the only way that these forced histograms can dither enough to draw gradients in shot backgrounds – otherwise they would just draw solid color blocks every time there is a "missing" color in the histogram that would otherwise be needed to bridge two colors in a gradient. To get my noise, I am referencing Apple's fantastic sample app [Using vImage Pixel Buffers to Generate Video Effects](https://developer.apple.com/documentation/accelerate/using_vimage_pixel_buffers_to_generate_video_effects), with a caveat, which is: I don't think we should ever be using a function like this to generate fresh noise at every buffer callback. I'm sure that Apple doesn't intend for developers to do that; they are just showing how performant it is, and how to implement it. But, if someone were to do that in a camera, it would use a lot of fuel doing something that human perception can't memorize in a detailed way over time, so we should be fooling those humans with something that just looks like fresh noise.
 
 This means, much like with my histograms, I am filling up a set number of buffers with generated `vImage` noise at initialization, and applying them to the realtime video stream buffers in a way that makes them look random: I go forward through the array, I go backwards through the array, then I shuffle the array, then I do it again. This prevents noise pattern recognition, where the sequence of noise appears to do a preset "dance" at a regular interval. But it means that whether you talk for a minute or an hour, the same amount of energy was spent on generating the noise buffers. If you think it's too frugal and you can see it when you pixel-peep, try a larger number. I would like to find a way to optimize my histogram specification more as well, because without the live noise generation, that part is now the biggest resource user.
 
@@ -1343,13 +1343,21 @@ func captureOutput(_: AVCaptureOutput,
 You can now completely remove the following functions and variables from `ExtensionProvider.swift`:
                      
 `var imageIsClean = true`    
+
 `func pixelBufferFromImage(_ image: CGImage) -> CVPixelBuffer?`
+
 `private var _whiteStripeStartRow: UInt32 = 0`
+
 `private var _whiteStripeIsAscending: Bool = false`
+
 `func startStreaming()`
+
 `func stopStreaming()`
+
 ` private var _streamingCounter: UInt32 = 0`
+
 `private var _timer: DispatchSourceTimer?`
+
 `private let _timerQueue = DispatchQueue(label: "timerQueue", qos: .userInteractive, attributes: [], autoreleaseFrequency: .workItem, target: .global(qos: .userInteractive))`
                                             
 That's it for the extension. You should be able to run it in the end-to-end app now and try out its filters. The only thing we're missing is a video monitor in the container app. As I mentioned in the first post, we are only writing UIs in **SwiftUI** in these posts, and not using `NSViewRepresentable`, so let's reuse our `CaptureSessionManager` in combination with our IOSurface->CGImage approach from the end-to-end app to give ourselves a feed of **OffcutsCam** when the extension is installed.
