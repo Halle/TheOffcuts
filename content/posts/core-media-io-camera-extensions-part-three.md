@@ -33,13 +33,13 @@ We've dealt with all of the gnarly process topics like how to set up these proje
 
 ## Loose ends
 
-I first should tie up something I left open in my previous post. Right at the end, regarding a modification I made to the end-to-end testing app so that the technical difficulties image would display unmirrored, I said this:
+I first should tie up something I left open in my previous post. Right at the end, regarding a modification I made to the end-to-end testing app so that the technical difficulties image would display unmirrored, I wrote:
 
 "I suspect my vertical-axis flipping in the end-to-end app isn’t correct for pixel buffers that originate from AVCaptureSession video, so I foresee a future improvement in which, instead of flipping the image, it complains when a pixel buffer was created with the wrong format or properties that would result in being in the wrong coordinate space once it gets to the camera system."
 
-Past me was correct to be suspicious of this fix, but not for the right reasons. The reason the placard was mirrored was not because I wrote a bug, but because it should be mirrored. A system camera defaults to showing the user of the camera everything (usually themselves) in mirror image, because that is how we're used to seeing ourselves. It shows everything (usually ourselves) to the person on the other end of the video call unmirrored, because that is how others are used to seeing us. Which means that the mirrored image wasn't truly mirrored – when I made a test call and looked at the other end of the call, the image was shown correctly without my fix code. 
+**Past me** was correct to be suspicious of this fix, but not for the right reasons. The reason the placard was mirrored was not because I wrote a bug, but because it should be mirrored. A system camera defaults to showing the user of the camera their own image **mirrored**, because that is how we're used to seeing ourselves. It shows them to the person on the other end of the video call **unmirrored**, because that is how others are used to seeing us. Which means that the mirrored image wasn't truly mirrored – when I made a test call and looked at the other end of the call, the image was shown correctly without my fix code. 
 
-This means that the code added to the end-to-end testing app *is* correct and should remain in place, because it shows us what the enduser should see, but the fix added to the technical difficulties image in the extension code is not correct and should be removed, so that when we see the technical difficulties image in the end-to-end testing app, we see it mirrored, correctly.
+This means that the code added to the end-to-end testing app *is* correct and should remain in place, because it shows us what the enduser should see, but the fix added to the technical difficulties image in the extension code to unmirror it is not correct and should be removed, so that when we see the technical difficulties image in the end-to-end testing app, we see it mirrored, correctly.
 
 ## Picking up where we left off
 
