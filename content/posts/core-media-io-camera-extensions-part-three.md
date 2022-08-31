@@ -200,9 +200,9 @@ This is in `Shared.swift` because we will be using slightly different implementa
 
 Let's talk briefly about what is going on in this class and what it will do for us in `ExtensionProvider` once we implement it there.
 
-1. In its `init()`, it finds out if it is supposed to capture the normal camera feed (e.g. the Continuity Camera Webcam, what we are going to use it for right now) or if we are going to use it to capture the feed from the installed extension (not for now).
-2. It then does a very standard AVCaptureSession configuration, based on Apple's published best practices.
-3. It tries to obtain the camera we specified (e.g. Continuity) by checking for a camera which is continuity but isn't the desk view, and returns it, or falls back to the .userPreferredCamera if that doesn't work out.
+1. In its `init()`, it finds out if it is supposed to capture the normal camera feed (e.g. the **Continuity Camera Webcam**, what we are going to use it for right now) or if we are going to use it to capture the feed from the installed extension (not for now).
+2. It then does a very standard `AVCaptureSession` configuration, based on Apple's published best practices.
+3. It tries to obtain the camera we specified (e.g. **Continuity**) by checking for a camera which is continuity but isn't the desk view, and returns it, or falls back to the .userPreferredCamera if that doesn't work out.
 4. It sets up and adds the input and output of the session from this camera and if all is good, it commits the configuration and returns `true`, or logs errors and returns `false`. When we have set up the captureSession's final `sampleBufferDelegate` in whichever target is implementing this code, that target will receive the buffers from this configured `AVCaptureSession` and can do what it likes with them.
 
 Now we can implement it in the extension code.
