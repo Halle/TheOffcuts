@@ -27,7 +27,7 @@ The previous two posts supported macOS versions starting with 12.3, but this one
 
 You'll also need a compatible beta OS on your phone in order to try the **Continuity Camera** features, but **Continuity Camera** isn't a requirement for working through the last part of this project – there will be fallback code to non-Continuity cameras, just like your extension should probably have, so no worries if you have an older phone, or a newer phone that you don't want to (or aren't allowed to) make a beta victim.
 
-Let's jump in. In [part 2](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-one/), we created a useful software camera and learned how to debug camera extensions without pain. You can [view or clone my version](https://github.com/Halle/TechnicalDifficulties) of it, keeping in mind that you will need to change all references to my organization ID (`com.politepix`) and my team ID to match your own, or it definitely won't work. Ideally you have your own that you made in the [previous post](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-two/) and it is still working, so we can continue with it here.
+Let's jump in. To continue from where we left off, you can either [get my version](https://github.com/Halle/TechnicalDifficulties) of our previous results, keeping in mind that you will need to change all references to my organization ID (`com.politepix`) and my team ID to match your own, or ideally you have your own project that you made in the [previous post](https://theoffcuts.org/posts/core-media-io-camera-extensions-part-two/) and it is still working, so we can continue with it here.
 
 We've dealt with all of the gnarly process topics like how to set up these projects correctly, how to install and uninstall extensions successfully, how very basic interprocess communication works for extensions, how to debug live extensions, and how to strenuously avoid debugging live extensions. With all of that packed away successfully, we can zero in on the fun topics today – live video and realtime effects.
 
@@ -60,7 +60,7 @@ The first thing we need to do is get ready to use a live camera and to use all t
 
 Next, please rename the file `NotificationName.swift` to `Shared.swift` because we are going to add some more shared Extension/App code there. 
 
-Lastly, please entirely remove the jpeg files `Dirty.jpg` and `Clean.jpg`.
+Lastly, remove the jpeg files `Dirty.jpg` and `Clean.jpg`.
 
 ## Live camera streaming
 
@@ -200,9 +200,9 @@ This is in `Shared.swift` because we will be using slightly different implementa
 
 Let's talk briefly about what is going on in this class and what it will do for us in `ExtensionProvider` once we implement it there.
 
-1. In its `init()`, it finds out if it is supposed to capture the normal camera feed (e.g. the **Continuity Camera Webcam**, what we are going to use it for right now) or if we are going to use it to capture the feed from the installed extension (later; not for now).
+1. In its `init()`, it finds out if it is supposed to capture the normal camera feed (e.g. the **Continuity Camera Webcam**, what we're using it for right now) or if we are going to use it to capture the feed from the installed extension (we'll do that later on).
 2. It then does a very standard `AVCaptureSession` configuration, based on Apple's published best practices.
-3. It tries to obtain the camera we specified (e.g. **Continuity**) by checking for a camera which is continuity but isn't the desk view, and returns it, or falls back to the .userPreferredCamera if that doesn't work out.
+3. It tries to obtain the camera we specified (e.g. **Continuity**) by checking for a camera which is continuity but isn't the desk view, and returns it, or falls back to the `.userPreferredCamera` if that doesn't work out.
 4. It sets up and adds the input and output of the session from this camera and if all is good, it commits the configuration and returns `true`, or logs errors and returns `false`. When we have set up the captureSession's final `sampleBufferDelegate` in whichever target is implementing this code, that target will receive the buffers from this configured `AVCaptureSession` and can do what it likes with them.
 
 Now we can implement it in the extension code.
@@ -314,7 +314,7 @@ As you can see, we have moved the function where we handle streaming buffers fro
 
 Delete the contents of `func startStreaming()` in `ExtensionDeviceSource` but leave the function in place for now.
 
-This should build. But, if we build and run the end-to-end testing app, we will get the "no video" image. This is because this more-complex extension requires some changes in the way the end-to-end app works so that it continues to emulate the system extension machinery. 
+It should build. But, if we build and run the end-to-end testing app, we will get the "no video" image. This is because this more-complex extension requires some changes in the way the end-to-end app works so that it continues to emulate the system extension machinery. 
 
 We'll make a couple of quick changes here. I am going to show you a more powerful way to communicate between the container app and extension later on, so let's repurpose our simple Darwin `CFNotification` system so that it is just for the end-to-end testing app. Add the following class to `Shared.swift`:
 
@@ -1222,7 +1222,7 @@ It's also a nice one for a tutorial because you can easily try it out with diffe
 
 There are seven images, representing seven "moods" or looks.
 
-The basic process of the filters are similar. Buffers are specified at initialization with the `vImage Pixel Buffer` buffer type they are going to need in the callback. We have a `converter` we will be able to use to take our camera feed `CVPixelBuffer` and turn it into our `vImage Pixel Buffer` `destinationBuffer`, which we can then do our `vImage` operations on. Each of the three effect passes starts and ends with a prepared `destinationBuffer`, and when we're done, we will convert `destinationBuffer` back into a prebaked `CVPixelBuffer` and `send()` it out to our stream.
+The basic process of the filters are similar. Buffers are specified at initialization with the `vImage Pixel Buffer` buffer type they are going to need in the callback. We have a `converter` we will be able to use to take our camera feed `CVPixelBuffer` and turn it into our `vImage Pixel Buffer` `destinationBuffer`, which we can then do our `vImage` operations on. Each of the three effect passes starts and ends with a prepared `destinationBuffer`, and when we're done, we will convert `destinationBuffer` back into a preconfigured `CVPixelBuffer` and `send()` it out to our stream.
 
 Ready? Let's plug it into `ExtensionStreamSource`. Give `ExtensionStreamSource` some new variables:
 
@@ -1446,7 +1446,7 @@ Let's add this to both our `VStacks` in the `ContentView` of the container app a
 Spacer()
 ```        
 
-And let's add this frame everywhere those `ContentViews` are created from:
+And let's add this frame to `ContentView()` everywhere that a `ContentView` is created:
 
 ```
 .frame(minWidth: 1280, maxWidth: 1360, minHeight: 900, maxHeight: 940)
@@ -1456,7 +1456,7 @@ And now you should be able to see your installed extension content in an image a
 
 I encountered one persistent bug in this phase of this post, which is that sometimes, the `/Applications` version of `OffcutsCam.app` would complain when asked to install the extension that it had an invalid codesign. In these cases, it was necessary to select `Xcode->Product->Show Build Folder in Finder` and move the copy of `OffcutsCam.app` in there to `/Applications` manually, at which point the error stopped.
 
-I encountered a milder bug (but still something that would be very stressful if I were discovering this the hard way via a tutorial not working) which was that I had one installation where the effects didn't work in the container app<->extension interaction but they did work in the end-to-end app, which self-healed after a second install, restart, reinstall. Well, we know that we're using betas and some mysteries are part of that. 
+I encountered a milder bug (but still something that would be very stressful if I were discovering this the hard way via a tutorial not working) which was that I had one installation where the effects didn't work in the container app<->extension interaction but they did work in the end-to-end app, which self-healed after a second install, restart, reinstall. Well, we know that we're using betas, and some mysteries are part of the beta experience. 
 
 That's everything! This has been quite a journey. I hope you feel well-set-up to start experimenting with your own effects and creative camera experiences. If you've had any trouble, compare against my [version on Github](https://github.com/Halle/ArtFilm) and I'm sure you'll find the issue in no time. Have fun!
 
