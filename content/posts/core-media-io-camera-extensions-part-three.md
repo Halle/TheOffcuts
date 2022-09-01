@@ -237,9 +237,9 @@ Add this variable to `ExtensionStreamSource `:
 
 `private var captureSessionManager: CaptureSessionManager?`
 
-Add the class conformance `AVCaptureVideoDataOutputSampleBufferDelegate` to `ExtensionStreamSource` in its class declaration right after `CMIOExtensionStreamSource` so we can a callback when there are captured buffers in the extension.
+Add the class conformance `AVCaptureVideoDataOutputSampleBufferDelegate` to `ExtensionStreamSource` in its class declaration right after `CMIOExtensionStreamSource` so we can get a callback when there are captured buffers in the extension.
 
-change the functions `func startStream()` and `func stopStream()` to this, so instead of starting the old streaming code they start and stop the `captureSession`:
+change the functions `func startStream()` and `func stopStream()` to this, so instead of controlling the old streaming code they start and stop the `captureSession`:
 
 ```
     func startStream() throws {
@@ -310,9 +310,9 @@ func captureOutput(_: AVCaptureOutput,
 
 remove the `private` designations from the variables `private var _isExtension: Bool = true` and `private var _videoDescription: CMFormatDescription!` and `private var _streamSource: ExtensionStreamSource!`
 
-As you can see, we have moved the function where we handle streaming buffers from `ExtensionDeviceSource` to `ExtensionStreamSource`, as a consequence of the fact that we are starting and stopping the capture session in the stream (where it makes sense to do that) and that is also the class that gets the callback for the captured buffers. This feels natural to me, since these are all characteristics of the video stream.
+As you can see, we've moved the function where we handle streaming buffers from `ExtensionDeviceSource` to `ExtensionStreamSource`, as a consequence of the fact that we are starting and stopping the capture session in the stream, and that is also the class that gets the callback for the captured buffers. This feels natural to me, since these are all characteristics of the video stream.
 
-Delete the contents of `func startStreaming()` in `ExtensionDeviceSource` but leave the function in place for now.
+Delete the contents of `func startStreaming()` in `ExtensionDeviceSource` but leave the empty function in place for now.
 
 It should build. But, if we build and run the end-to-end testing app, we will get the "no video" image. This is because this more-complex extension requires some changes in the way the end-to-end app works so that it continues to emulate the system extension machinery. 
 
