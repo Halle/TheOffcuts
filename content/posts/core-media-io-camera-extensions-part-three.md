@@ -895,7 +895,7 @@ and change its `private func notificationReceived(notificationName: String)` to 
 
 Which will forward the same `mood` info into `ExtensionProvider` when there are no properties to interact with because we're running it directly in the end-to-end testing app.
 
-Maybe make a nice cup of tea? See you in a bit.
+Great job, and a great time to take a break. Maybe make a nice cup of tea? See you in a bit.
 
 ## Effects!
 
