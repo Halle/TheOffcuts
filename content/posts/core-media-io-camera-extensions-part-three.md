@@ -1467,9 +1467,3 @@ I encountered one persistent bug in this phase of this post, which is that somet
 I encountered a milder bug (but still something that would be very stressful if I were discovering this the hard way via a tutorial not working) which was that I had one installation where the effects didn't work in the container app<->extension interaction but they did work in the end-to-end app, which self-healed after a second install, restart, reinstall. Well, we know that we're using betas, and some mysteries are part of the beta experience. 
 
 That's everything! This has been quite a journey. I hope you feel well-set-up to start experimenting with your own effects and creative camera experiences. If you've had any trouble, compare against my [version on Github](https://github.com/Halle/ArtFilm) and I'm sure you'll find the issue in no time. Have fun!
-
-## Extro
-
-✂ - - Non-code thoughts, please stop reading here for the code-only experience - - ✂
-
-Extro will follow up in a few days after publication, as usual.
