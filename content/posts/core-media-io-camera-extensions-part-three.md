@@ -803,7 +803,7 @@ with the following block that includes returned data and behavior for our custom
     }   
 ```
 
-We have created a custom property called "mood". The entire property name is the string `"4cc_mood_glob_0000"` which is a standard prefix, the name of our property selector, the scope (global), and a standard suffix. In practice it means that there is a published selector for this extension which a client can connect to using the `FourChar` "mood", which should sound familiar after the code we added to the container app. This "mood" is eventually going to provide the extension with some information about which effect we want.
+We have created a custom property called "mood". The entire property name to be addressed by the C API is the string `"4cc_mood_glob_0000"` which is a standard prefix, the name of our property selector (`mood`), the scope (`global`), and the property element ('0000', which equates to `main`). In practice it means that there is a published selector for this extension which a client can connect to using the `FourChar` "mood", which should sound familiar after the code we added to the container app. This "mood" is eventually going to provide the extension with some information about which effect we want.
 
 Bringing it all together, when we select an option in the container app picker, it obtains a reference to the device ID and this custom selector, and changes the value of the property, and the extension will react to this and also back the property change with an entry in its `UserDefaults` for persistence.  
 
