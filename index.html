@@ -964,7 +964,7 @@ var deviceSource: ExtensionDeviceSource?
             logger.error(&#34;Couldn&#39;t create destination buffer, returning&#34;)
             return
         }
-</code></pre><p>Replace our good old sampleBufferDelegate callback:</p><p><code>func captureOutput(_: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from _: AVCaptureConnection)</code></p><p>with this version that uses our effect buffers and effects:</p><pre tabindex=0><code>func captureOutput(_: AVCaptureOutput,
+</code></pre><p>Replace our good old <code>sampleBufferDelegate</code> callback:</p><p><code>func captureOutput(_: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from _: AVCaptureConnection)</code></p><p>with this version that uses our effect buffers and effects:</p><pre tabindex=0><code>func captureOutput(_: AVCaptureOutput,
                        // Callback for sampleBuffers of captured video, which we apply our effects to in realtime
                        didOutput sampleBuffer: CMSampleBuffer,
                        from _: AVCaptureConnection) {
