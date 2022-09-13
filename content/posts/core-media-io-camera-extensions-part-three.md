@@ -1263,7 +1263,7 @@ and add these lines to its `init(localizedName: String, streamID: UUID, streamFo
         }
 ```
 
-Replace our good old sampleBufferDelegate callback:
+Replace our good old `sampleBufferDelegate` callback:
 
 `func captureOutput(_: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from _: AVCaptureConnection)` 
 
