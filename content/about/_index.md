@@ -7,7 +7,7 @@ title: About | Contact
 ---
 
 # Contact
-You can send me a note [here](mailto:%63%6F%72%64%69%61%6C%2E%61%72%74%32%36%33%32%40%66%61%73%74%6D%61%69%6C%2E%63%6F%6D)
+You can send me a note [here](mailto:%63%6F%72%64%69%61%6C%2E%61%72%74%32%36%33%32%40%66%61%73%74%6D%61%69%6C%2E%63%6F%6D?subject=Via%20The%20Offcuts%20contact%20form)
 
 # About me
 
